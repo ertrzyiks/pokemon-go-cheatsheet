@@ -1,0 +1,41 @@
+---
+import { InferGetStaticParamsType } from "astro";
+import Layout from "../../../layouts/Layout.astro";
+import { allTypes } from "../../../pokemon_types";
+import { getStrongMatchups, getWeakMatchups } from "../../../matchups";
+
+export function getStaticPaths() {
+  return allTypes.map((type) => ({ params: { type } }));
+}
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+
+const { type } = Astro.params as Params;
+
+const strongMatchups = getStrongMatchups(type);
+const weakMatchups = getWeakMatchups(type);
+---
+
+<Layout title="Welcome to Astro.">
+  <div>{type} Attack!</div>
+
+  <div>
+    Strong against
+    <ul>
+      {strongMatchups.map((t) => <li>{t}</li>)}
+    </ul>
+  </div>
+
+  <div>
+    Weak against
+    <ul>
+      {weakMatchups.map((t) => <li>{t}</li>)}
+    </ul>
+  </div>
+</Layout>
+
+<style>
+  div {
+    color: white;
+  }
+</style>
