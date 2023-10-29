@@ -5,7 +5,7 @@ import { allTypes } from "../pokemon_types";
 
 <Layout title="Welcome to Astro.">
   <main>
-    <h1 class="text-gradient">Pokemon Companion</h1>
+    <h1 class="text-gradient">Pokemon Go Companion</h1>
 
     <div>
       <h2>Attack Types</h2>
@@ -14,7 +14,7 @@ import { allTypes } from "../pokemon_types";
         {
           allTypes.map((type) => (
             <li>
-              <a href={`/types/attack/${type}`}>{type}</a>{" "}
+              <a href={`/pokemon-go-companion/types/attack/${type}`}>{type}</a>{" "}
             </li>
           ))
         }
