@@ -1,9 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Emblem from "../components/Emblem.astro";
 import { allTypes } from "../pokemon_types";
+import { pokemonTypesConfig } from "../pokemon_types_config";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Pokemon Go Companion">
   <main>
     <h1 class="text-gradient">Pokemon Go Companion</h1>
 
@@ -14,7 +16,14 @@ import { allTypes } from "../pokemon_types";
         {
           allTypes.map((type) => (
             <li>
-              <a href={`/pokemon-go-companion/types/attack/${type}`}>{type}</a>{" "}
+              <a href={`/pokemon-go-companion/types/attack/${type}`}>
+                <Emblem
+                  image={pokemonTypesConfig[type].image}
+                  color={pokemonTypesConfig[type].color}
+                />
+
+                <span>{type}</span>
+              </a>{" "}
             </li>
           ))
         }
@@ -40,6 +49,18 @@ import { allTypes } from "../pokemon_types";
     text-align: center;
     margin-bottom: 1em;
   }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  li {
+    list-style: none;
+    margin: 1em;
+  }
+
   .text-gradient {
     background-image: var(--accent-gradient);
     -webkit-background-clip: text;
@@ -49,5 +70,13 @@ import { allTypes } from "../pokemon_types";
   }
   a {
     color: white;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  a span {
+    text-transform: uppercase;
   }
 </style>
