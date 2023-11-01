@@ -5,14 +5,16 @@ import type { PokemonType } from "../pokemon_types";
 
 interface Props {
   type: PokemonType;
+  interactive?: boolean;
 }
 
-const { type } = Astro.props;
+const { type, interactive } = Astro.props;
 ---
 
 <Pill
   image={pokemonTypesConfig[type].image}
   color={pokemonTypesConfig[type].color}
+  interactive={interactive}
 >
   {pokemonTypesConfig[type].label}
 </Pill>

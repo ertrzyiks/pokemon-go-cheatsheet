@@ -4,15 +4,16 @@ import Emblem from "./Emblem.astro";
 interface Props {
   image: string;
   color: string;
+  interactive?: boolean;
 }
 
-const { image, color } = Astro.props;
+const { image, color, interactive } = Astro.props;
 const val = Math.random();
 const animationDelay = `${Math.floor(Math.random() * -40)}s`;
 const animationName = val > 0.3 ? "mymove2" : val > 0.6 ? "mymove" : "mymove3";
 ---
 
-<div style={{ backgroundColor: color }}>
+<div class:list={{ interactive }} style={{ backgroundColor: color }}>
   <Emblem color={color} image={image} />
   <span><slot /></span>
 </div>
@@ -32,7 +33,7 @@ const animationName = val > 0.3 ? "mymove2" : val > 0.6 ? "mymove" : "mymove3";
     );
   }
 
-  div:hover {
+  .interactive:hover {
     background-image: url("../assets/pattern.png");
     animation-timing-function: linear;
     animation-duration: 40s;
