@@ -1,0 +1,18 @@
+---
+import Pill from "./Pill.astro";
+import { pokemonTypesConfig } from "../pokemon_types_config";
+import type { PokemonType } from "../pokemon_types";
+
+interface Props {
+  type: PokemonType;
+}
+
+const { type } = Astro.props;
+---
+
+<Pill
+  image={pokemonTypesConfig[type].image}
+  color={pokemonTypesConfig[type].color}
+>
+  {pokemonTypesConfig[type].label}
+</Pill>

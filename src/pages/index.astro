@@ -1,8 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Emblem from "../components/Emblem.astro";
 import { allTypes } from "../pokemon_types";
-import { pokemonTypesConfig } from "../pokemon_types_config";
+import PokemonPill from "../components/PokemonPill.astro";
 ---
 
 <Layout title="Pokemon Go Companion">
@@ -17,13 +16,8 @@ import { pokemonTypesConfig } from "../pokemon_types_config";
           allTypes.map((type) => (
             <li>
               <a href={`/pokemon-go-companion/types/attack/${type}`}>
-                <Emblem
-                  image={pokemonTypesConfig[type].image}
-                  color={pokemonTypesConfig[type].color}
-                />
-
-                <span>{type}</span>
-              </a>{" "}
+                <PokemonPill type={type} />
+              </a>
             </li>
           ))
         }

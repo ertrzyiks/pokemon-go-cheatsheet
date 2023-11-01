@@ -1,5 +1,6 @@
 ---
 import type { InferGetStaticParamsType } from "astro";
+import PokemonPill from "../../../components/PokemonPill.astro";
 import Layout from "../../../layouts/Layout.astro";
 import { allTypes } from "../../../pokemon_types";
 import { getStrongMatchups, getWeakMatchups } from "../../../matchups";
@@ -17,19 +18,37 @@ const weakMatchups = getWeakMatchups(type);
 ---
 
 <Layout title={`Pokemon Go Companion - ${type} attack`}>
-  <div>{type} Attack!</div>
+  <div><PokemonPill type={type} /></div>
+
+  <div>Attack</div>
 
   <div>
     Strong against
     <ul>
-      {strongMatchups.map((t) => <li>{t}</li>)}
+      {
+        strongMatchups.map((t) => (
+          <li>
+            <div>
+              <PokemonPill type={t} />
+            </div>
+          </li>
+        ))
+      }
     </ul>
   </div>
 
   <div>
     Weak against
     <ul>
-      {weakMatchups.map((t) => <li>{t}</li>)}
+      {
+        weakMatchups.map((t) => (
+          <li>
+            <div>
+              <PokemonPill type={t} />
+            </div>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </Layout>
@@ -37,5 +56,16 @@ const weakMatchups = getWeakMatchups(type);
 <style>
   div {
     color: white;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  li > div {
+    display: flex;
   }
 </style>
