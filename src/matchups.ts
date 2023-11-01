@@ -197,3 +197,15 @@ export function getStrongMatchups(type: PokemonType) {
 export function getWeakMatchups(type: PokemonType) {
   return Object.entries(matchups[type]).filter(([, matchup]) => matchup === Matchup.Weak).map(([type]) => type as PokemonType)
 }
+
+export function getStrongMatchupsToDefeat(types: PokemonType[]) {
+  const type = types[0]
+
+  return Object.entries(matchups).filter(([_, matchup]) => matchup[type] === Matchup.Strong).map(([attackerType]) => attackerType as PokemonType)
+}
+
+export function getWeakMatchupsToDefeat(types: PokemonType[]) {
+  const type = types[0]
+
+  return Object.entries(matchups).filter(([_, matchup]) => matchup[type] === Matchup.Weak).map(([attackerType]) => attackerType as PokemonType)
+}

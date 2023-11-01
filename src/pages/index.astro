@@ -2,10 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import { allTypes } from "../pokemon_types";
 import PokemonPill from "../components/PokemonPill.astro";
+import PageContent from "../components/PageContent.astro";
 ---
 
 <Layout title="Pokemon Go Companion">
-  <main>
+  <PageContent>
     <h1 class="text-gradient">Pokemon Go Companion</h1>
 
     <div>
@@ -23,25 +24,40 @@ import PokemonPill from "../components/PokemonPill.astro";
         }
       </ul>
     </div>
-  </main>
+
+    <div>
+      <h2>How to defeat</h2>
+
+      <ul role="list" class="link-card-grid">
+        {
+          allTypes.map((type) => (
+            <li>
+              <a href={`/pokemon-go-companion/types/defense/${type}`}>
+                <PokemonPill type={type} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </PageContent>
 </Layout>
 
 <style>
-  main {
-    margin: auto;
-    padding: 1rem;
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-  }
   h1 {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 700;
     line-height: 1;
-    text-align: center;
+    margin-top: 1em;
     margin-bottom: 1em;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
   }
 
   ul {
