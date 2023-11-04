@@ -1,33 +1,15 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { allTypes } from "../pokemon_types";
-import PokemonPill from "../components/PokemonPill.astro";
-import PageContent from "../components/PageContent.astro";
-import TypeList from "../components/TypeList.astro";
-import TypeListItem from "../components/TypeListItem.astro";
-import BlockLink from "../components/BlockLink.astro";
+import Layout from "../../../layouts/Layout.astro";
+import { allTypes } from "../../../pokemon_types";
+import PokemonPill from "../../../components/PokemonPill.astro";
+import PageContent from "../../../components/PageContent.astro";
+import TypeList from "../../../components/TypeList.astro";
+import TypeListItem from "../../../components/TypeListItem.astro";
+import BlockLink from "../../../components/BlockLink.astro";
 ---
 
 <Layout title="Pokemon Go Companion">
   <PageContent>
-    <h1 class="text-gradient">Pokemon Go Companion</h1>
-
-    <div>
-      <h2>Attack Types</h2>
-
-      <TypeList>
-        {
-          allTypes.map((type) => (
-            <TypeListItem>
-              <BlockLink href={`/pokemon-go-companion/types/attack/${type}`}>
-                <PokemonPill interactive type={type} />
-              </BlockLink>
-            </TypeListItem>
-          ))
-        }
-      </TypeList>
-    </div>
-
     <div>
       <h2>How to defeat</h2>
 
@@ -47,14 +29,6 @@ import BlockLink from "../components/BlockLink.astro";
 </Layout>
 
 <style>
-  h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1;
-    margin-top: 2em;
-    margin-bottom: 2em;
-  }
-
   h2 {
     font-size: 2rem;
     font-weight: 700;

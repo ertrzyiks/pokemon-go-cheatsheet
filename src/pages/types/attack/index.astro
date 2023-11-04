@@ -1,0 +1,47 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { allTypes } from "../../../pokemon_types";
+import PokemonPill from "../../../components/PokemonPill.astro";
+import PageContent from "../../../components/PageContent.astro";
+import TypeList from "../../../components/TypeList.astro";
+import TypeListItem from "../../../components/TypeListItem.astro";
+import BlockLink from "../../../components/BlockLink.astro";
+---
+
+<Layout title="Pokemon Go Companion">
+  <PageContent>
+    <div>
+      <h2>Attack Types</h2>
+
+      <TypeList>
+        {
+          allTypes.map((type) => (
+            <TypeListItem>
+              <BlockLink href={`/pokemon-go-companion/types/attack/${type}`}>
+                <PokemonPill interactive type={type} />
+              </BlockLink>
+            </TypeListItem>
+          ))
+        }
+      </TypeList>
+    </div>
+  </PageContent>
+</Layout>
+
+<style>
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+</style>

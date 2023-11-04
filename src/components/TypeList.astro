@@ -1,0 +1,13 @@
+<ul role="list">
+  <slot />
+</ul>
+
+<style>
+  ul {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 16px;
+  }
+</style>
