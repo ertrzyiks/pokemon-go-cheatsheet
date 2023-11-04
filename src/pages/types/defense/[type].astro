@@ -8,6 +8,9 @@ import {
   getWeakMatchupsToDefeat,
 } from "../../../matchups";
 import PageContent from "../../../components/PageContent.astro";
+import TypeList from "../../../components/TypeList.astro";
+import TypeListItem from "../../../components/TypeListItem.astro";
+import BlockLink from "../../../components/BlockLink.astro";
 
 export function getStaticPaths() {
   return allTypes.map((type) => ({ params: { type } }));
@@ -22,7 +25,9 @@ const weakMatchups = getWeakMatchupsToDefeat([type]);
 ---
 
 <Layout title={`Pokemon Go Companion - ${type} attack`}>
-  <div><PokemonPill type={type} /></div>
+  <div transition:name="type-header" transition:animate="slide">
+    <PokemonPill type={type} />
+  </div>
 
   <PageContent>
     <div>How to defeat</div>
@@ -55,6 +60,20 @@ const weakMatchups = getWeakMatchupsToDefeat([type]);
           ))
         }
       </ul>
+    </div>
+
+    <div transition:name="typelist-defense" transition:animate="initial">
+      <TypeList>
+        {
+          allTypes.map((type) => (
+            <TypeListItem>
+              <BlockLink href={`/pokemon-go-companion/types/defense/${type}`}>
+                <PokemonPill interactive type={type} />
+              </BlockLink>
+            </TypeListItem>
+          ))
+        }
+      </TypeList>
     </div>
   </PageContent>
 </Layout>

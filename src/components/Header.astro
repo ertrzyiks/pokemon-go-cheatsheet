@@ -1,11 +1,23 @@
 ---
+interface Props {
+  showLogo?: boolean;
+}
 
+const { showLogo = true } = Astro.props;
 ---
 
 <header>
-  <a href="/pokemon-go-companion" class="text-gradient">PGC</a>
-  <a href="/pokemon-go-companion/types/attack">Attack</a>
-  <a href="/pokemon-go-companion/types/defense">Defense</a>
+  {
+    showLogo && (
+      <a href="/pokemon-go-companion" class="logo text-gradient">
+        PGC
+      </a>
+    )
+  }
+  <nav>
+    <a href="/pokemon-go-companion/types/attack">Attack</a>
+    <a href="/pokemon-go-companion/types/defense">Defense</a>
+  </nav>
 </header>
 
 <style>
@@ -17,6 +29,16 @@
     gap: 1em;
   }
 
+  .logo {
+    position: absolute;
+  }
+
+  nav {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    width: 100%;
+  }
   a {
     color: #fff;
     text-decoration: none;

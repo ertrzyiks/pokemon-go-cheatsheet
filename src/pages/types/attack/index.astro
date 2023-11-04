@@ -13,17 +13,19 @@ import BlockLink from "../../../components/BlockLink.astro";
     <div>
       <h2>Attack Types</h2>
 
-      <TypeList>
-        {
-          allTypes.map((type) => (
-            <TypeListItem>
-              <BlockLink href={`/pokemon-go-companion/types/attack/${type}`}>
-                <PokemonPill interactive type={type} />
-              </BlockLink>
-            </TypeListItem>
-          ))
-        }
-      </TypeList>
+      <div transition:name="typelist-attack" transition:animate="initial">
+        <TypeList>
+          {
+            allTypes.map((type) => (
+              <TypeListItem>
+                <BlockLink href={`/pokemon-go-companion/types/attack/${type}`}>
+                  <PokemonPill interactive type={type} />
+                </BlockLink>
+              </TypeListItem>
+            ))
+          }
+        </TypeList>
+      </div>
     </div>
   </PageContent>
 </Layout>
