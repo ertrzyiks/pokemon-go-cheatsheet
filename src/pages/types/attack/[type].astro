@@ -1,5 +1,6 @@
 ---
 import type { InferGetStaticParamsType } from "astro";
+import { fade } from "astro:transitions";
 import PokemonPill from "../../../components/PokemonPill.astro";
 import Layout from "../../../layouts/Layout.astro";
 import { allTypes } from "../../../pokemon_types";
@@ -22,7 +23,10 @@ const weakMatchups = getWeakMatchups(type);
 ---
 
 <Layout title={`Pokemon Go Companion - ${type} attack`}>
-  <div transition:name="type-header" transition:animate="fade">
+  <div
+    transition:name="type-header"
+    transition:animate={fade({ duration: 500 })}
+  >
     <PokemonPill type={type} />
   </div>
 
@@ -59,7 +63,7 @@ const weakMatchups = getWeakMatchups(type);
       </ul>
     </div>
 
-    <div transition:name="typelist-attack" transition:animate="fade">
+    <div transition:name="typelist-attack" transition:animate="initial">
       <TypeList>
         {
           allTypes.map((type) => (

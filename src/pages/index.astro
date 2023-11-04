@@ -10,12 +10,18 @@ import BlockLink from "../components/BlockLink.astro";
 
 <Layout title="Pokemon Go Companion" showLogo={false}>
   <PageContent>
-    <h1 class="text-gradient">Pokemon Go Companion</h1>
+    <h1
+      transition:name="logo"
+      transition:animate="initial"
+      class="text-gradient"
+    >
+      Pokemon Go Companion
+    </h1>
 
-    <div transition:name="typelist-attack" transition:animate="initial">
+    <div>
       <h2>Attack Types</h2>
 
-      <div>
+      <div transition:name="typelist-attack" transition:animate="initial">
         <TypeList>
           {
             allTypes.map((type) => (

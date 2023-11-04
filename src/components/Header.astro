@@ -9,7 +9,12 @@ const { showLogo = true } = Astro.props;
 <header>
   {
     showLogo && (
-      <a href="/pokemon-go-companion" class="logo text-gradient">
+      <a
+        href="/pokemon-go-companion"
+        transition:name="logo"
+        transition:animate="initial"
+        class="logo text-gradient"
+      >
         PGC
       </a>
     )
