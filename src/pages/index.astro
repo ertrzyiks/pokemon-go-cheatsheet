@@ -7,6 +7,7 @@ import PageContent from "../components/PageContent.astro";
 import TypeList from "../components/TypeList.astro";
 import TypeListItem from "../components/TypeListItem.astro";
 import BlockLink from "../components/BlockLink.astro";
+import Pill from "../components/Pill.astro";
 ---
 
 <Layout title="Pokemon Go Companion" showLogo={false}>
@@ -65,7 +66,13 @@ import BlockLink from "../components/BlockLink.astro";
           Object.entries(gruntCatchphrases).map((challenge) => (
             <div class="grunt-wrap">
             <li class="grunt">
-                <a href={`/pokemon-go-companion/grunt/${challenge[0]}`}>{challenge[1]}</a>
+                <a href={`/pokemon-go-companion/grunt/${challenge[0]}`}>
+                <Pill
+                 color="#5F6DBC"
+                 interactive
+                >
+                  {challenge[1]}
+                </Pill></a>
             </li>
             </div>
           ))
@@ -88,8 +95,8 @@ import BlockLink from "../components/BlockLink.astro";
     font-size: 2rem;
     font-weight: 700;
     line-height: 1;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 0.6em;
   }
 
   ul {
@@ -106,18 +113,14 @@ import BlockLink from "../components/BlockLink.astro";
   }
 
   div.grunt-wrap {
-    background: var(--accent-gradient);
+    /* background: var(--accent-gradient); */
     position: relative;
     border-radius: 8px;
-    padding: 2px;
   }
 
   li.grunt {
-    background: #222;
+    /* background: #222; */
     height: 100%;
-    padding: 8px;
-    border-radius: 6px;
-    padding: 16px;
     line-height: 1.25;
   }
 
