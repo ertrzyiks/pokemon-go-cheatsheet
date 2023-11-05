@@ -1,0 +1,56 @@
+---
+import type { InferGetStaticParamsType } from "astro";
+import Layout from "../../layouts/Layout.astro";
+import { gruntCatchphrases } from "../../grunt_catchphrases"
+import PageContent from "../../components/PageContent.astro";
+import { getStrongMatchupsToDefeat } from "../../matchups";
+import { PokemonType } from "../../pokemon_types";
+import PokemonPill from "../../components/PokemonPill.astro";
+import TypeList from "../../components/TypeList.astro";
+import TypeListItem from "../../components/TypeListItem.astro";
+
+export function getStaticPaths() {
+  return Object.keys(gruntCatchphrases).map((type) => ({ params: { type } }));
+}
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+
+const { type } = Astro.params as Params;
+
+const strongMatchups = getStrongMatchupsToDefeat([type as PokemonType])
+
+---
+
+<Layout title={`Grunt counters`}>
+    <h2>{gruntCatchphrases[type]}</h2>
+    <PageContent>
+        <div class="header">Counters</div>
+        <TypeList>
+        {
+          strongMatchups.map((t) => (
+            <TypeListItem>
+                <PokemonPill type={t} />
+            </TypeListItem>
+          ))
+        }
+      </TypeList>
+    </PageContent>
+</Layout>
+
+<style>
+div.header {
+    margin: 10px 0;
+}
+
+h2 {
+    font-size: 40px;
+    text-align: center;
+     background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+    width: fit-content;
+    margin: 20px auto;
+}
+</style>
