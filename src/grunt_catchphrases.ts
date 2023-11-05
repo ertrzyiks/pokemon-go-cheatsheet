@@ -1,25 +1,6 @@
-export const gruntCatchphrasesOld = [
-    'Go, my super bug Pokémon!',
-    'Wherever there is light, there is also shadow.',
-    'ROAR! ...How\'d that sound?',
-    'Get ready to be shocked!',
-    'Check out my cute Pokémon!',
-    'This buff physique isn\'t just for show!',
-    'Do you know how hot Pokémon fire breath can get?',
-    'Battle against my Flying-type Pokémon!',
-    'Ke... ke... ke... ke... ke... ke!',
-    'Don\'t tangle with us!',
-    'You\'ll be defeated into the ground!',
-    'You\'re gonna be frozen in your tracks.',
-    'Normal does not mean weak',
-    'Coiled and ready to strike!',
-    'Are you scared of psychics that use unseen power?',
-    'Let\'s rock and roll!',
-    'You\'re no match for my iron will!',
-    'These waters are treacherous!'
-  ] as const
+import { PokemonType } from "./pokemon_types";
 
-  export const gruntCatchphrases = {
+  export const gruntCatchphrases: Record<PokemonType, string> = {
       'bug': 'Go, my super bug Pokémon!',
       'dark': 'Wherever there is light, there is also shadow.',
       'dragon': 'ROAR! ...How\'d that sound?',
