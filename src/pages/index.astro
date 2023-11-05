@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { allTypes } from "../pokemon_types";
+import { gruntCatchphrases } from "../grunt_catchphrases";
 import PokemonPill from "../components/PokemonPill.astro";
 import PageContent from "../components/PageContent.astro";
 ---
@@ -40,6 +41,26 @@ import PageContent from "../components/PageContent.astro";
         }
       </ul>
     </div>
+
+    
+
+    <div>
+      <h2>Team R challenges</h2>
+
+      <ul role="list" class="link-card-grid">
+        {
+          gruntCatchphrases.map((challenge) => (
+            <div class="grunt-wrap">
+            <li class="grunt">
+              
+                <p>{challenge}</p>
+              
+            </li>
+            </div>
+          ))
+        }
+      </ul>
+    </div>
   </PageContent>
 </Layout>
 
@@ -71,6 +92,20 @@ import PageContent from "../components/PageContent.astro";
     list-style: none;
     display: flex;
     justify-content: center;
+  }
+
+  div.grunt-wrap {
+    background: var(--accent-gradient);
+    position: relative;
+    border-radius: 8px;
+    padding: 2px;
+  }
+
+  li.grunt {
+    background: #222;
+    height: 100%;
+    padding: 8px;
+    border-radius: 6px;
   }
 
   .text-gradient {
