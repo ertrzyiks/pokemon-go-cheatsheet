@@ -17,12 +17,14 @@ type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 
 const { type } = Astro.params as Params;
 
-const strongMatchups = getStrongMatchupsToDefeat([type as PokemonType])
+const pokemonType = type as PokemonType;
+
+const strongMatchups = getStrongMatchupsToDefeat([pokemonType])
 
 ---
 
 <Layout title={`Grunt counters`}>
-    <h2>{gruntCatchphrases[type]}</h2>
+    <h2>{gruntCatchphrases[pokemonType]}</h2>
     <PageContent>
         <div class="header">Counters</div>
         <TypeList>
