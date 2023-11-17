@@ -8,6 +8,43 @@ import TypeList from "../components/TypeList.astro";
 import TypeListItem from "../components/TypeListItem.astro";
 import BlockLink from "../components/BlockLink.astro";
 import Pill from "../components/Pill.astro";
+
+const gruntCatchphrasesInOrder = gruntCatchphrases.sort((a, b) => {
+  if (a.text < b.text) {
+    return -1;
+  }
+  if (a.text > b.text) {
+    return 1;
+  }
+  return 0;
+} )
+
+interface Result {
+  index: number,
+  sum: number
+}
+
+const getShortText = (text: string) => {
+  if (text.length < 35) {
+    return text
+  }
+
+  const words = text.split(' ')
+
+  const result = { index: -1, sum: 0 };
+    
+  words.some(function (w: string, idx: number) {
+    const self: Result = this as Result;
+      self.index = idx;
+      if (self.sum + w.length > 25) {
+          return true;
+      }
+      self.sum += w.length;
+  }, result);
+
+  const wordsToUse = words.slice(0, result.index)
+  return `${wordsToUse.join(' ')}...`
+  }
 ---
 
 <Layout title="Pokemon Go Companion" showLogo={false}>
@@ -58,20 +95,21 @@ import Pill from "../components/Pill.astro";
 
     
 
-    <div>
+    <div class="grunt-wrapper">
       <h2>Team R challenges</h2>
 
       <ul role="list" class="link-card-grid">
         {
-          Object.entries(gruntCatchphrases).map((challenge) => (
+          gruntCatchphrasesInOrder.map((challenge) => (
             <div class="grunt-wrap">
             <li class="grunt">
-                <a href={`/pokemon-go-companion/grunt/${challenge[0]}`}>
+                <a href={`/pokemon-go-companion/grunt/${challenge.type}`}>
                 <Pill
                  color="#5F6DBC"
                  interactive
                 >
-                  {challenge[1]}
+                 
+                  {getShortText(challenge.text)}
                 </Pill></a>
             </li>
             </div>
@@ -85,7 +123,7 @@ import Pill from "../components/Pill.astro";
 <style>
   h1 {
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1;
     margin-top: 2em;
     margin-bottom: 2em;
@@ -93,10 +131,10 @@ import Pill from "../components/Pill.astro";
 
   h2 {
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1;
-    margin-top: 1em;
-    margin-bottom: 0.6em;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
   }
 
   ul {
@@ -142,5 +180,9 @@ import Pill from "../components/Pill.astro";
 
   a span {
     text-transform: uppercase;
+  }
+
+  .grunt-wrapper {
+    margin-bottom: 50px;
   }
 </style>
