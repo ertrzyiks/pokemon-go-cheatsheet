@@ -9,11 +9,6 @@ import TypeListItem from "../components/TypeListItem.astro";
 import BlockLink from "../components/BlockLink.astro";
 import Pill from "../components/Pill.astro";
 
-interface Result {
-  index: number,
-  sum: number
-}
-
 const getShortText = (text: string) => {
   if (text.length < 35) {
     return text
@@ -22,15 +17,13 @@ const getShortText = (text: string) => {
   const words = text.split(' ')
 
   const result = { index: -1, sum: 0 };
-    
   words.some(function (w: string, idx: number) {
-    const self: Result = this as Result;
-      self.index = idx;
-      if (self.sum + w.length > 25) {
+      result.index = idx;
+      if (result.sum + w.length > 25) {
           return true;
       }
-      self.sum += w.length;
-  }, result);
+      result.sum += w.length;
+  });
 
   const wordsToUse = words.slice(0, result.index)
   return `${wordsToUse.join(' ')}...`
