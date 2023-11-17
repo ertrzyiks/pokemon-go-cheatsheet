@@ -1,23 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { allTypes } from "../pokemon_types";
-import { gruntCatchphrases } from "../grunt_catchphrases";
+import { gruntCatchphrasesInOrder } from "../grunt_catchphrases";
 import PokemonPill from "../components/PokemonPill.astro";
 import PageContent from "../components/PageContent.astro";
 import TypeList from "../components/TypeList.astro";
 import TypeListItem from "../components/TypeListItem.astro";
 import BlockLink from "../components/BlockLink.astro";
 import Pill from "../components/Pill.astro";
-
-const gruntCatchphrasesInOrder = gruntCatchphrases.sort((a, b) => {
-  if (a.text < b.text) {
-    return -1;
-  }
-  if (a.text > b.text) {
-    return 1;
-  }
-  return 0;
-} )
 
 interface Result {
   index: number,
