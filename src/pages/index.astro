@@ -1,12 +1,33 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { allTypes } from "../pokemon_types";
-import { gruntCatchphrases } from "../grunt_catchphrases";
+import { gruntCatchphrasesInOrder } from "../grunt_catchphrases";
 import PokemonPill from "../components/PokemonPill.astro";
 import PageContent from "../components/PageContent.astro";
 import TypeList from "../components/TypeList.astro";
 import TypeListItem from "../components/TypeListItem.astro";
 import BlockLink from "../components/BlockLink.astro";
+import Pill from "../components/Pill.astro";
+
+const getShortText = (text: string) => {
+  if (text.length < 35) {
+    return text
+  }
+
+  const words = text.split(' ')
+
+  const result = { index: -1, sum: 0 };
+  words.some(function (w: string, idx: number) {
+      result.index = idx;
+      if (result.sum + w.length > 25) {
+          return true;
+      }
+      result.sum += w.length;
+  });
+
+  const wordsToUse = words.slice(0, result.index)
+  return `${wordsToUse.join(' ')}...`
+  }
 ---
 
 <Layout title="Pokemon Go Companion" showLogo={false}>
@@ -57,15 +78,22 @@ import BlockLink from "../components/BlockLink.astro";
 
     
 
-    <div>
+    <div class="grunt-wrapper">
       <h2>Team R challenges</h2>
 
       <ul role="list" class="link-card-grid">
         {
-          Object.entries(gruntCatchphrases).map((challenge) => (
+          gruntCatchphrasesInOrder.map((challenge) => (
             <div class="grunt-wrap">
             <li class="grunt">
-                <a href={`/pokemon-go-companion/grunt/${challenge[0]}`}>{challenge[1]}</a>
+                <a href={`/pokemon-go-companion/grunt/${challenge.type}`}>
+                <Pill
+                 color="#5F6DBC"
+                 interactive
+                >
+                 
+                  {getShortText(challenge.text)}
+                </Pill></a>
             </li>
             </div>
           ))
@@ -78,7 +106,7 @@ import BlockLink from "../components/BlockLink.astro";
 <style>
   h1 {
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1;
     margin-top: 2em;
     margin-bottom: 2em;
@@ -86,10 +114,10 @@ import BlockLink from "../components/BlockLink.astro";
 
   h2 {
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
   }
 
   ul {
@@ -106,18 +134,14 @@ import BlockLink from "../components/BlockLink.astro";
   }
 
   div.grunt-wrap {
-    background: var(--accent-gradient);
+    /* background: var(--accent-gradient); */
     position: relative;
     border-radius: 8px;
-    padding: 2px;
   }
 
   li.grunt {
-    background: #222;
+    /* background: #222; */
     height: 100%;
-    padding: 8px;
-    border-radius: 6px;
-    padding: 16px;
     line-height: 1.25;
   }
 
@@ -139,5 +163,9 @@ import BlockLink from "../components/BlockLink.astro";
 
   a span {
     text-transform: uppercase;
+  }
+
+  .grunt-wrapper {
+    margin-bottom: 50px;
   }
 </style>

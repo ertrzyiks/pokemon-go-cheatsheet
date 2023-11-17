@@ -1,0 +1,68 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { gruntCatchphrasesInOrder } from "../../grunt_catchphrases";
+import PageContent from "../../components/PageContent.astro";
+import Pill from "../../components/Pill.astro";
+---
+
+<Layout title="Pokemon Go Companion">
+  <PageContent>
+    <div>
+      <h2>Grunts</h2>
+
+      <div transition:name="typelist-attack" transition:animate="initial">
+          {
+            gruntCatchphrasesInOrder.map((challenge) => (
+                <div class="grunt-wrap">
+                    <li class="grunt">
+                        <a href={`/pokemon-go-companion/grunt/${challenge.type}`}>
+                        <Pill
+                        color="#5F6DBC"
+                        interactive
+                        >
+                        
+                        {challenge.text}
+                        </Pill></a>
+                    </li>
+                </div>
+            ))
+          }
+      </div>
+    </div>
+  </PageContent>
+</Layout>
+
+<style>
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+
+  li {
+    list-style: none;
+    display: flex;
+    text-decoration: none;
+    margin: 20px 0;
+  }
+
+    a {
+    color: white;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+  }
+
+</style>

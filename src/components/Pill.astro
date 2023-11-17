@@ -2,7 +2,7 @@
 import Emblem from "./Emblem.astro";
 
 interface Props {
-  image: string;
+  image?: string;
   color: string;
   interactive?: boolean;
 }
@@ -14,7 +14,7 @@ const animationName = val > 0.3 ? "mymove2" : val > 0.6 ? "mymove" : "mymove3";
 ---
 
 <div class:list={{ interactive }} style={{ backgroundColor: color }}>
-  <Emblem color={color} image={image} />
+  {image && <Emblem color={color} image={image} />}
   <span><slot /></span>
 </div>
 
