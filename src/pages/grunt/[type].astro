@@ -3,7 +3,7 @@ import type { InferGetStaticParamsType } from "astro";
 import Layout from "../../layouts/Layout.astro";
 import { gruntCatchphrases } from "../../grunt_catchphrases"
 import PageContent from "../../components/PageContent.astro";
-import { getStrongMatchupsToDefeat } from "../../matchups";
+import { getStrongMatchups, getStrongMatchupsToDefeat } from "../../matchups";
 import type { PokemonType } from "../../pokemon_types";
 import PokemonPill from "../../components/PokemonPill.astro";
 import TypeList from "../../components/TypeList.astro";
@@ -21,11 +21,18 @@ const pokemonType = type as PokemonType;
 
 const strongMatchups = getStrongMatchupsToDefeat([pokemonType])
 
+const weakTypes = getStrongMatchups(pokemonType)
+
 ---
 
 <Layout title={`Grunt counters`}>
     <h2>{gruntCatchphrases.find(challenge => challenge.type === pokemonType)?.text}</h2>
     <PageContent>
+    <div class="wrapper">
+     <div class="header">Their main attack</div>
+      <PokemonPill type={pokemonType} />
+      </div>
+      <div class="wrapper">
         <div class="header">Counters</div>
         <TypeList>
         {
@@ -36,12 +43,30 @@ const strongMatchups = getStrongMatchupsToDefeat([pokemonType])
           ))
         }
       </TypeList>
+      </div>
+      <div class="wrapper">
+      <div class="header">These types will be most vulnerable</div>
+       <TypeList>
+        {
+          weakTypes.map((t) => (
+            <TypeListItem>
+                <PokemonPill type={t} />
+            </TypeListItem>
+          ))
+        }
+        </TypeList>
+      </div>
     </PageContent>
 </Layout>
 
 <style>
+div.wrapper {
+  margin-top: 30px;
+}
+
 div.header {
     margin: 10px 0;
+    font-size: 20px;
 }
 
 h2 {
@@ -53,6 +78,6 @@ h2 {
     background-size: 400%;
     background-position: 0%;
     width: fit-content;
-    margin: 20px auto;
+    margin: 30px auto;
 }
 </style>
