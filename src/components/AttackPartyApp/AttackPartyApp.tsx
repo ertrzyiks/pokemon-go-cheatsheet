@@ -2,7 +2,7 @@ import { useState } from "react";
 import { allTypes, type PokemonType } from "../../pokemon_types";
 import { getStrongMatchups } from "../../matchups";
 
-const PartyApp = () => {
+const AttackPartyApp = () => {
   const [types, setTypes] = useState<PokemonType[]>([]);
 
   const allMatchups = types.map((type) => getStrongMatchups(type));
@@ -47,4 +47,4 @@ const PartyApp = () => {
   );
 };
 
-export default PartyApp;
+export default AttackPartyApp;
