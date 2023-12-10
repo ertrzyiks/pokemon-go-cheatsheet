@@ -63,7 +63,8 @@ const weakMatchups = getWeakMatchups(type);
       </ul>
     </div>
 
-    <div transition:name="typelist-attack" transition:animate="initial">
+    <div transition:name="typelist-attack" transition:animate="initial" class="typelist">
+      <h3>List of all attack types</h3>
       <TypeList>
         {
           allTypes.map((type) => (
@@ -102,5 +103,13 @@ const weakMatchups = getWeakMatchups(type);
   li > div {
     display: flex;
     width: 100%;
+  }
+
+  .typelist {
+    margin-top: 64px;
+  }
+
+  h3 {
+    margin-bottom: 12px;
   }
 </style>
