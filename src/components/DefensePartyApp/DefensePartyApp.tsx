@@ -1,9 +1,11 @@
 import { useState } from "react";
+import Switch from "../Switch/Switch";
 import { allTypes, type PokemonType } from "../../pokemon_types";
 import {
   getStrongMatchupsToDefeat,
   getWeakMatchupsToDefeat,
 } from "../../matchups";
+import "./styles.css";
 
 const DefensePartyApp = () => {
   const [types, setTypes] = useState<PokemonType[]>([]);
@@ -31,15 +33,17 @@ const DefensePartyApp = () => {
     <div>
       <h1>Party</h1>
 
-      {allTypes.map((type) => (
-        <li
-          key={type}
-          style={{ color: types.includes(type) ? "blue" : "white" }}
-          onClick={() => toggleType(type)}
-        >
-          {type}
-        </li>
-      ))}
+      <div className="defense-party-app-list">
+        {allTypes.map((type) => (
+          <div className="defense-party-app-list-item" key={type}>
+            <Switch
+              value={types.includes(type)}
+              onChange={() => toggleType(type)}
+            />{" "}
+            {type}
+          </div>
+        ))}
+      </div>
 
       <hr />
 
