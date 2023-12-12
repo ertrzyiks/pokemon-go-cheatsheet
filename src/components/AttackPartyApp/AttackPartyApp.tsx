@@ -2,6 +2,7 @@ import { useState } from "react";
 import Switch from "../Switch/Switch";
 import { allTypes, type PokemonType } from "../../pokemon_types";
 import { getStrongMatchups } from "../../matchups";
+import { pokemonTypesConfig } from "../../pokemon_types_config";
 import "./styles.css";
 
 const AttackPartyApp = () => {
@@ -29,6 +30,8 @@ const AttackPartyApp = () => {
         {allTypes.map((type) => (
           <div className="attack-party-app-list-item" key={type}>
             <Switch
+              icon={pokemonTypesConfig[type].image}
+              color={pokemonTypesConfig[type].color}
               value={types.includes(type)}
               onChange={() => toggleType(type)}
             />{" "}

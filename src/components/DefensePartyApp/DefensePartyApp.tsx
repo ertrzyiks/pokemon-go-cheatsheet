@@ -5,6 +5,7 @@ import {
   getStrongMatchupsToDefeat,
   getWeakMatchupsToDefeat,
 } from "../../matchups";
+import { pokemonTypesConfig } from "../../pokemon_types_config";
 import "./styles.css";
 
 const DefensePartyApp = () => {
@@ -37,6 +38,8 @@ const DefensePartyApp = () => {
         {allTypes.map((type) => (
           <div className="defense-party-app-list-item" key={type}>
             <Switch
+              icon={pokemonTypesConfig[type].image}
+              color={pokemonTypesConfig[type].color}
               value={types.includes(type)}
               onChange={() => toggleType(type)}
             />{" "}

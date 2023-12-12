@@ -3,9 +3,13 @@ import "./styles.css";
 
 const Switch = ({
   value,
+  icon,
+  color,
   onChange,
 }: {
   value: boolean;
+  icon: string;
+  color: string;
   onChange: () => void;
 }) => {
   const id = useId();
@@ -20,11 +24,13 @@ const Switch = ({
         type="checkbox"
       />
       <label
-        className="react-switch-label"
+        className={["react-switch-label", value ? "is-active" : ""].join(" ")}
         htmlFor={id}
-        style={{ background: value ? "#06D6A0" : undefined }}
+        style={{ color: color }}
       >
-        <span className={`react-switch-button`} />
+        <span className={`react-switch-button`}>
+          <img className={`react-switch-button-icon`} src={icon} />
+        </span>
       </label>
     </>
   );
