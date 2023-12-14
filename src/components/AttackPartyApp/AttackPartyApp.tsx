@@ -35,21 +35,27 @@ const AttackPartyApp = () => {
               value={types.includes(type)}
               onChange={() => toggleType(type)}
             />{" "}
-            {type}
+            {pokemonTypesConfig[type].label}
           </div>
         ))}
       </div>
 
       <hr />
 
-      {allTypes.map((type) => (
-        <li
-          key={type}
-          style={{ color: hasStrongMatchup(type) ? "green" : "white" }}
-        >
-          {type}
-        </li>
-      ))}
+      <div className="attack-matchup-grid">
+        {allTypes.map((type) => (
+          <div
+            key={type}
+            style={{
+              border: "1px solid #eee",
+              padding: "16px",
+              backgroundColor: hasStrongMatchup(type) ? "green" : "transparent",
+            }}
+          >
+            {pokemonTypesConfig[type].label}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
