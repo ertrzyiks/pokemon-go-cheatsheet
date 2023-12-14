@@ -12,32 +12,42 @@
   width: 70px;
   height: 40px;
   /* background: color-mix(in srgb, currentColor 30%, transparent); */
-  background: #333;
+  transition: background-color 0.2s;
+  background-color: #333;
+  background-image: linear-gradient(
+    90deg,
+    rgba(34, 34, 34, 0.3) 0%,
+    rgba(34, 34, 34, 0.5) 100%
+  );
   border-radius: 30px;
   position: relative;
+  user-select: none;
 }
 
 .react-switch-label.is-active {
-  background: color-mix(in srgb, currentColor 80%, transparent);
+  /* background: #1aa3ad; */
+  background-color: currentColor;
 }
 
 .react-switch-label .react-switch-button {
   content: "";
   position: absolute;
   top: 2px;
-  left: 2px;
+  left: 0px;
   width: 35px;
   height: 35px;
   border-radius: 35px;
-  /* transition: 0.2s; */
-  background-color: color-mix(in srgb, currentColor 70%, transparent);
+  transition: background-color 0.1s, transform 0.3s;
+  transform: translateX(2px);
+  background-color: #333;
+  border: 1px solid #999;
   box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
 }
 
 .react-switch-checkbox:checked + .react-switch-label .react-switch-button {
-  left: calc(100% - 2px);
-  transform: translateX(-100%);
-  background-color: color-mix(in srgb, currentColor 100%, transparent);
+  transform: translateX(33px);
+  background: currentColor;
+  border: 1px solid currentColor;
 }
 
 .react-switch-label:active .react-switch-button {
