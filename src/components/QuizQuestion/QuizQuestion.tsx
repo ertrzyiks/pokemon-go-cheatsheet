@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+import Pill from "../Pill/Pill";
+import "./styles.css";
+
 interface Props {
   question: string;
   options: string[];
@@ -34,16 +37,27 @@ const QuizQuestion = ({
   return (
     <div>
       <div>{question}</div>
-      <div>
+      <div className="quiz_question-options">
         {options.map((option) => (
-          <button key={option} onClick={() => handleAnswer(option)}>
+          <Pill
+            as="button"
+            style={{
+              color: "white",
+              backgroundColor:
+                state === "pending" || option !== answer ? "blue" : "green",
+            }}
+            key={option}
+            onClick={() => handleAnswer(option)}
+          >
             {option}
-          </button>
+          </Pill>
         ))}
       </div>
 
       {state !== "pending" && (
-        <button onClick={() => onContinue()}>Continue</button>
+        <Pill as="button" onClick={() => onContinue()}>
+          Continue
+        </Pill>
       )}
     </div>
   );

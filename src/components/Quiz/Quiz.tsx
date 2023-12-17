@@ -1,71 +1,93 @@
 import { useState } from "react";
 
+import "./styles.css";
 import QuizQuestion from "../QuizQuestion/QuizQuestion";
+import Pill from "../Pill/Pill";
+import { getQuestions } from "../../quiz_questions";
 
-const getQuestions = () => {
-  return [
-    {
-      question: "What is the best attack to use against a dragon type pokemon?",
-      options: ["poison", "water", "fairy", "fire"] as const,
-      answer: "fairy",
-    },
-    {
-      question: "What is the best attack to use against a water type pokemon?",
-      options: ["poison", "grass", "fire", "ghost"] as const,
-      answer: "grass",
-    },
-  ];
-};
+interface Question {
+  question: string;
+  options: string[];
+  answer: string;
+}
+
+interface QuizStartState {
+  phase: "start";
+}
+
+interface QuizQuestionState {
+  phase: "question";
+  question: number;
+  questions: Question[];
+  score: number;
+}
+
+interface QuizEndState {
+  phase: "end";
+  score: number;
+}
+
+type QuizState = QuizStartState | QuizQuestionState | QuizEndState;
 
 const Quiz = () => {
-  const [state, setState] = useState<"start" | "question" | "end">("start");
-  const [questions, setQuestions] = useState(null);
-  const [question, setQuestion] = useState(0);
-  const [score, setScore] = useState(0);
+  const [state, setState] = useState<QuizState>({ phase: "start" });
 
   const handleStart = () => {
-    setState("question");
-    setQuestions(getQuestions());
-    setQuestion(0);
-    setScore(0);
+    setState({
+      phase: "question",
+      question: 0,
+      questions: getQuestions(),
+      score: 0,
+    });
   };
 
   const handleContinue = () => {
-    if (question + 1 < questions.length) {
-      setQuestion(question + 1);
+    if (state.phase !== "question") {
+      return;
+    }
+
+    if (state.question + 1 < state.questions.length) {
+      setState({ ...state, question: state.question + 1 });
     } else {
-      setState("end");
+      setState({ phase: "end", score: state.score });
     }
   };
 
   return (
-    <div>
-      Quiz
-      {state === "start" ? (
-        <button onClick={() => handleStart()}>Start</button>
-      ) : state === "question" ? (
+    <div className="quiz">
+      <h1 className="quiz-title">Quiz</h1>
+
+      {state.phase === "start" ? (
+        <div>
+          <Pill as="button" onClick={() => handleStart()}>
+            Start
+          </Pill>
+        </div>
+      ) : state.phase === "question" ? (
         <div>
           <div>
-            {question + 1} / {questions.length}
+            {state.question + 1} / {state.questions.length}
           </div>
 
-          <div>Score: {score}</div>
+          <div>Score: {state.score}</div>
 
           <QuizQuestion
-            key={question}
-            question={questions[question].question}
-            options={questions[question].options}
-            answer={questions[question].answer}
+            key={state.question}
+            question={state.questions[state.question].question}
+            options={state.questions[state.question].options}
+            answer={state.questions[state.question].answer}
             onAnswer={(score) => {
-              setScore((currentScore) => currentScore + score);
+              setState({ ...state, score: state.score + score });
             }}
             onContinue={handleContinue}
           />
         </div>
       ) : (
         <div>
-          <div>Final Score: {score}</div>
-          <button onClick={() => setState("start")}>Play Again</button>
+          <div>Final Score: {state.score}</div>
+          <Pill as="button" onClick={() => setState({ phase: "start" })}>
+            Play Again
+          </Pill>
         </div>
       )}
     </div>

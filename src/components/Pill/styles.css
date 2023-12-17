@@ -1,0 +1,15 @@
+.pill {
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 6px;
+  display: flex;
+  gap: 8px;
+  min-width: 145px;
+  max-width: fit-content;
+  background-image: radial-gradient(
+    circle at 50% 2.3e2%,
+    rgba(255, 255, 255, 0.33) 0%,
+    rgba(0, 0, 0, 0.33) 75%
+  );
+  cursor: pointer;
+}
