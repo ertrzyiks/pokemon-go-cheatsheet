@@ -85,7 +85,7 @@ const Quiz = () => {
       ) : (
         <div>
           <div>Final Score: {state.score}</div>
-          <Pill as="button" onClick={() => setState({ phase: "start" })}>
+          <Pill as="button" onClick={() => handleStart()}>
             Play Again
           </Pill>
         </div>
