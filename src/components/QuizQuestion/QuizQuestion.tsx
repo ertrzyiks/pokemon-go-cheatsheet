@@ -38,7 +38,7 @@ const QuizQuestion = ({
     <div>
       <div>{question}</div>
       <div className="quiz_question-options">
-        {options.map((option) => (
+        {options.map((option, index) => (
           <Pill
             as="button"
             style={{
@@ -49,7 +49,7 @@ const QuizQuestion = ({
             key={option}
             onClick={() => handleAnswer(option)}
           >
-            {option}
+            {index + 1}. {option}
           </Pill>
         ))}
       </div>
