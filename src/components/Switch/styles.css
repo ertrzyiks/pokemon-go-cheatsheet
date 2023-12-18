@@ -21,12 +21,16 @@
   );
   border-radius: 30px;
   position: relative;
-  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .react-switch-label.is-active {
   /* background: #1aa3ad; */
   background-color: currentColor;
+}
+
+.react-switch-label:hover .react-switch-button-icon {
+  transform: scale(1.1);
 }
 
 .react-switch-label .react-switch-button {
@@ -48,10 +52,6 @@
   transform: translateX(33px);
   background: currentColor;
   border: 1px solid currentColor;
-}
-
-.react-switch-label:active .react-switch-button {
-  width: 35px;
 }
 
 .react-switch-button-icon {
