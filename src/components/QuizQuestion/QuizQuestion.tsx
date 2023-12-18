@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { clsx } from "clsx";
 
 import Pill from "../Pill/Pill";
 import "./styles.css";
@@ -31,34 +32,44 @@ const QuizQuestion = ({
     const score = value === answer ? 1 : 0;
 
     onAnswer(score);
-    setSelected(answer);
+    setSelected(value);
   };
 
   return (
-    <div>
-      <div>{question}</div>
+    <div className="quiz_question">
+      <div className="quiz_question-question">{question}</div>
+
       <div className="quiz_question-options">
         {options.map((option, index) => (
-          <Pill
-            as="button"
-            style={{
-              color: "white",
-              backgroundColor:
-                state === "pending" || option !== answer ? "blue" : "green",
-            }}
-            key={option}
-            onClick={() => handleAnswer(option)}
-          >
-            {index + 1}. {option}
-          </Pill>
+          <div className="quiz_question-option" key={option}>
+            <Pill
+              as={state === "pending" ? "button" : "div"}
+              className={clsx({
+                "text-white": true,
+                "bg-blue-500":
+                  state === "pending" ||
+                  option !== answer ||
+                  option !== selected,
+                "bg-green-500": state !== "pending" && option === answer,
+                "bg-red-500": state === "incorrect" && option === selected,
+              })}
+              onClick={() => state === "pending" && handleAnswer(option)}
+            >
+              {index + 1}. {option}
+            </Pill>
+          </div>
         ))}
       </div>
 
-      {state !== "pending" && (
+      <div
+        className={clsx({
+          invisible: state === "pending",
+        })}
+      >
         <Pill as="button" onClick={() => onContinue()}>
           Continue
         </Pill>
-      )}
+      </div>
     </div>
   );
 };

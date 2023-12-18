@@ -4,3 +4,25 @@
   gap: 16px;
   margin: 16px 0;
 }
+
+.quiz_question-continue {
+  visibility: hidden;
+}
+
+.quiz_question-continue.is-visible {
+  visibility: visible;
+}
+
+.quiz_question {
+  width: 100%;
+}
+
+.quiz_question-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quiz_question-question {
+  text-align: center;
+}

@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import "./styles.css";
 import QuizQuestion from "../QuizQuestion/QuizQuestion";
 import Pill from "../Pill/Pill";
 import { getQuestions } from "../../quiz_questions";
@@ -54,8 +53,8 @@ const Quiz = () => {
   };
 
   return (
-    <div className="quiz">
-      <h1 className="quiz-title">Quiz</h1>
+    <div className="flex flex-col align-center justify-center h-[100dvh] max-w-xl mx-auto">
+      <h1 className="text-3xl my-4">Quiz</h1>
 
       {state.phase === "start" ? (
         <div>
@@ -64,7 +63,7 @@ const Quiz = () => {
           </Pill>
         </div>
       ) : state.phase === "question" ? (
-        <div>
+        <div className="w-full">
           <div>
             {state.question + 1} / {state.questions.length}
           </div>

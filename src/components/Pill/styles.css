@@ -2,7 +2,6 @@
   width: 100%;
   padding: 8px 16px;
   border-radius: 6px;
-  clip-path: inset(0% 0% 0% 0% round 6px);
   border: none;
   display: flex;
   gap: 8px;
@@ -13,5 +12,18 @@
     rgba(255, 255, 255, 0.33) 0%,
     rgba(0, 0, 0, 0.33) 75%
   );
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.pill.is-interactive {
   cursor: pointer;
+}
+
+.pill.is-interactive:hover {
+  outline: 1px solid #fff;
+}
+
+.pill.is-interactive:active {
+  outline-offset: 2px;
 }
