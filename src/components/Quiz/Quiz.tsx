@@ -54,10 +54,10 @@ const Quiz = () => {
 
   return (
     <div className="flex flex-col align-center justify-center h-[100dvh] max-w-xl mx-auto">
-      <h1 className="text-3xl my-4">Quiz</h1>
+      <h1 className="text-3xl my-4 text-center">Quiz</h1>
 
       {state.phase === "start" ? (
-        <div>
+        <div className="flex items-center justify-center">
           <Pill as="button" onClick={() => handleStart()}>
             Start
           </Pill>
@@ -82,8 +82,9 @@ const Quiz = () => {
           />
         </div>
       ) : (
-        <div>
-          <div>Final Score: {state.score}</div>
+        <div className="flex flex-col items-center justify-center">
+          <div className="mb-4">Final Score: {state.score}</div>
+
           <Pill as="button" onClick={() => handleStart()}>
             Play Again
           </Pill>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { clsx } from "clsx";
 
 import Pill from "../Pill/Pill";
-import "./styles.css";
 
 interface Props {
   question: string;
@@ -36,12 +35,12 @@ const QuizQuestion = ({
   };
 
   return (
-    <div className="quiz_question">
-      <div className="quiz_question-question">{question}</div>
+    <div className="w-full">
+      <div className="text-center">{question}</div>
 
-      <div className="quiz_question-options">
+      <div className="grid grid-cols-2 gap-4 my-4">
         {options.map((option, index) => (
-          <div className="quiz_question-option" key={option}>
+          <div className="flex items-center justify-center" key={option}>
             <Pill
               as={state === "pending" ? "button" : "div"}
               className={clsx({
