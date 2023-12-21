@@ -32,7 +32,7 @@ const DefensePartyApp = () => {
 
   return (
     <div>
-      <h1>Party</h1>
+      <h1 className="my-8 text-5xl">Dual Types app</h1>
 
       <div className="defense-party-app-list">
         {allTypes.map((type) => (

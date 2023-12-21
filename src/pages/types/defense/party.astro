@@ -1,8 +1,11 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import PageContent from "../../../components/PageContent.astro";
 import DefensePartyApp from "../../../components/DefensePartyApp/DefensePartyApp.tsx";
 
 ---
-<Layout title="dd">
-  <DefensePartyApp client:load />
+<Layout title="Dual Types app">
+  <PageContent>
+    <DefensePartyApp client:load />
+  </PageContent>
 </Layout>

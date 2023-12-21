@@ -1,6 +1,7 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import { allTypes } from "../../../pokemon_types";
+import Pill from "../../../components/Pill.astro";
 import PokemonPill from "../../../components/PokemonPill.astro";
 import PageContent from "../../../components/PageContent.astro";
 import TypeList from "../../../components/TypeList.astro";
@@ -32,8 +33,22 @@ import BlockLink from "../../../components/BlockLink.astro";
       </div>
     </div>
 
-    <div class="party-block">
-      <a href="/pokemon-go-companion/types/defense/party">Party</a>
+    <div class="my-8">
+      <h2>Dual Types</h2>
+
+      <p class="mb-4">
+        Some pokemons belong to not one but two types.
+        Check how it affects the streght and weakness of them with the Dual Types app.
+      </p>
+
+      <a href="/pokemon-go-companion/types/defense/party" class="block w-4">
+        <Pill
+          color={'#3b82f6'}
+          interactive
+        >
+          Try now
+        </Pill>
+      </a>
     </div>
   </PageContent>
 </Layout>
@@ -69,18 +84,5 @@ import BlockLink from "../../../components/BlockLink.astro";
   }
   .party-block {
     margin-top: 12px;
-  }
-
-  a {
-    color: white;
-    display: flex;
-    gap: 1em;
-    align-items: center;
-    text-decoration: none;
-    width: 100%;
-  }
-
-  a span {
-    text-transform: uppercase;
   }
 </style>

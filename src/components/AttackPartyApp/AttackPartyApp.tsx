@@ -24,20 +24,22 @@ const AttackPartyApp = () => {
 
   return (
     <div>
-      <h1>Party</h1>
+      <h1 className="my-8 text-5xl">Attack Party</h1>
 
-      <div className="attack-party-app-list">
-        {allTypes.map((type) => (
-          <div className="attack-party-app-list-item" key={type}>
-            <Switch
-              icon={pokemonTypesConfig[type].image}
-              color={pokemonTypesConfig[type].color}
-              value={types.includes(type)}
-              onChange={() => toggleType(type)}
-            />{" "}
-            {pokemonTypesConfig[type].label}
-          </div>
-        ))}
+      <div className="attack-party-app-wrapper my-4">
+        <div className="attack-party-app-list">
+          {allTypes.map((type) => (
+            <div className="attack-party-app-list-item" key={type}>
+              <Switch
+                icon={pokemonTypesConfig[type].image}
+                color={pokemonTypesConfig[type].color}
+                value={types.includes(type)}
+                onChange={() => toggleType(type)}
+              />{" "}
+              {pokemonTypesConfig[type].label}
+            </div>
+          ))}
+        </div>
       </div>
 
       <hr />

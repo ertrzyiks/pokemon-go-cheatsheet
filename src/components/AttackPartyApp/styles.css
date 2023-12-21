@@ -1,6 +1,12 @@
+.attack-party-app-wrapper {
+  max-width: 100%;
+  overflow-x: scroll;
+}
+
 .attack-party-app-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-auto-flow: column dense;
+  grid-template-rows: 1fr 1fr;
   gap: 16px;
 }
 

@@ -1,6 +1,7 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import { allTypes } from "../../../pokemon_types";
+import Pill from "../../../components/Pill.astro";
 import PokemonPill from "../../../components/PokemonPill.astro";
 import PageContent from "../../../components/PageContent.astro";
 import TypeList from "../../../components/TypeList.astro";
@@ -32,8 +33,19 @@ import BlockLink from "../../../components/BlockLink.astro";
       </div>
     </div>
 
-    <div class="party-block">
-      <a href="/pokemon-go-companion/types/attack/party">Party</a>
+    <div class="my-8">
+      <h2>Attack Party</h2>
+
+      <p class="mb-4">Learn what coverage your party has with the Attack Party app.</p>
+
+      <a href="/pokemon-go-companion/types/attack/party" class="block w-4">
+        <Pill
+          color={'#3b82f6'}
+          interactive
+        >
+          Try now
+        </Pill>
+      </a>
     </div>
   </PageContent>
 </Layout>
@@ -53,13 +65,5 @@ import BlockLink from "../../../components/BlockLink.astro";
     -webkit-text-fill-color: transparent;
     background-size: 400%;
     background-position: 0%;
-  }
-
-  .party-block {
-    margin-top: 12px;
-  }
-
-  a {
-    color: #fff;
   }
 </style>

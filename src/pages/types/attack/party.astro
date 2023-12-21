@@ -1,8 +1,11 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import PageContent from "../../../components/PageContent.astro";
 import AttackPartyApp from "../../../components/AttackPartyApp/AttackPartyApp.tsx";
 
 ---
-<Layout title="dd">
-  <AttackPartyApp client:only="react" />
+<Layout title="Attack Party">
+  <PageContent>
+    <AttackPartyApp client:only="react" />
+  </PageContent>
 </Layout>
