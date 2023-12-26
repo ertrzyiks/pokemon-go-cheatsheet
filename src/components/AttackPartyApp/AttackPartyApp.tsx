@@ -68,6 +68,7 @@ const AttackPartyApp = () => {
       <div className="attack-matchup-grid my-8 mx-auto">
         {allTypes.map((type) => (
           <MatchupMarker
+            key={type}
             color={hasStrongMatchup(type) ? "effective" : "neutral"}
           >
             {pokemonTypesConfig[type].label}
