@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { clsx } from "clsx";
+
 import Switch from "../Switch/Switch";
 import SwitchList from "../SwitchList/SwitchList";
+import Rating from "../Rating/Rating";
 import { allTypes, type PokemonType } from "../../pokemon_types";
 import {
   getStrongMatchupsToDefeat,
@@ -35,6 +38,8 @@ const DefensePartyApp = () => {
     <div>
       <h1 className="my-8 text-5xl">Dual Types app</h1>
 
+      <p className="my-4">Types of the pokemon</p>
+
       <SwitchList>
         {allTypes.map((type) => (
           <div className="defense-party-app-list-item" key={type}>
@@ -49,23 +54,28 @@ const DefensePartyApp = () => {
         ))}
       </SwitchList>
 
-      <hr />
+      <p className="my-4">Effectiveness of attack types</p>
 
-      <div className="defense-matchup-grid">
+      <div className="defense-matchup-grid my-4 mx-auto">
         {allTypes.map((type) => (
           <div
             key={type}
-            style={{
-              border: "1px solid #eee",
-              padding: "16px",
-              backgroundColor: hasStrongMatchup(type)
-                ? "green"
-                : hasWeakMatchup(type)
-                ? "red"
-                : "transparent",
-            }}
+            className={clsx("flex justify-between items-center px-4 py-2", {
+              "bg-slate-800": !hasStrongMatchup(type) && !hasWeakMatchup(type),
+              "bg-green-800": hasStrongMatchup(type),
+              "bg-red-800": hasWeakMatchup(type),
+            })}
           >
             {pokemonTypesConfig[type].label}
+            <Rating
+              value={
+                hasStrongMatchup(type)
+                  ? "up"
+                  : hasWeakMatchup(type)
+                  ? "down"
+                  : "neutral"
+              }
+            />
           </div>
         ))}
       </div>

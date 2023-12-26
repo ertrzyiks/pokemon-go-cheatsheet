@@ -7,6 +7,25 @@ import { pokemonTypesConfig } from "../../pokemon_types_config";
 import "./styles.css";
 import clsx from "clsx";
 
+const MatchupMarker = ({
+  children,
+  color,
+}: {
+  children: React.ReactNode;
+  color: "neutral" | "effective";
+}) => {
+  return (
+    <div
+      className={clsx("px-4 py-2", {
+        "bg-slate-800": color === "neutral",
+        "bg-green-800": color === "effective",
+      })}
+    >
+      {children}
+    </div>
+  );
+};
+
 const AttackPartyApp = () => {
   const [types, setTypes] = useState<PokemonType[]>([]);
 
@@ -48,16 +67,28 @@ const AttackPartyApp = () => {
 
       <div className="attack-matchup-grid my-8 mx-auto">
         {allTypes.map((type) => (
-          <div
-            key={type}
-            className={clsx("px-4 py-2", {
-              "bg-slate-800": !hasStrongMatchup(type),
-              "bg-green-800": hasStrongMatchup(type),
-            })}
+          <MatchupMarker
+            color={hasStrongMatchup(type) ? "effective" : "neutral"}
           >
             {pokemonTypesConfig[type].label}
-          </div>
+          </MatchupMarker>
         ))}
+      </div>
+
+      <div className="my-4">
+        <p className="my-4">Legend</p>
+        <div className="flex items-center gap-2 my-2">
+          <MatchupMarker color="neutral">Type</MatchupMarker>{" "}
+          <span className="text-sm">
+            no selected type is super-effective against this type
+          </span>
+        </div>
+        <div className="flex items-center gap-2 my-2">
+          <MatchupMarker color="effective">Type</MatchupMarker>{" "}
+          <span className="text-sm">
+            at least one of selected types is super-effective against this type
+          </span>
+        </div>
       </div>
     </div>
   );
