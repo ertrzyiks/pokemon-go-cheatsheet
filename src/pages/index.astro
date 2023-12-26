@@ -8,6 +8,8 @@ import TypeList from "../components/TypeList.astro";
 import TypeListItem from "../components/TypeListItem.astro";
 import BlockLink from "../components/BlockLink.astro";
 import Pill from "../components/Pill.astro";
+import AttackTypesIntro from "../components/AttackTypesIntro.astro";
+import DefenseTypesIntro from "../components/DefenseTypesIntro.astro";
 
 const getShortText = (text: string) => {
   if (text.length < 35) {
@@ -41,11 +43,7 @@ const getShortText = (text: string) => {
     </h1>
 
     <div>
-      <h2 class="my-6">Attack Types</h2>
-
-      <p class="my-4">
-        Find out which pokemon types will take extra damage from your attacks.
-      </p>
+      <AttackTypesIntro />
 
       <div transition:name="typelist-attack" transition:animate="initial">
         <TypeList>
@@ -63,11 +61,7 @@ const getShortText = (text: string) => {
     </div>
 
     <div>
-      <h2 class="my-6">Defense</h2>
-
-      <p class="my-4">
-        Find out what attacks one should use to defeat a certain pokemon type.
-      </p>
+      <DefenseTypesIntro />
 
       <div transition:name="typelist-defense" transition:animate="initial">
         <TypeList>

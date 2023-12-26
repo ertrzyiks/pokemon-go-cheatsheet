@@ -1,0 +1,16 @@
+.switch-list-wrapper {
+  max-width: 100%;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.switch-list {
+  display: grid;
+  grid-auto-flow: column dense;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+}
+
+.switch-list-item {
+  scroll-snap-align: start;
+}

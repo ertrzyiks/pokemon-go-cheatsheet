@@ -7,16 +7,13 @@ import PageContent from "../../../components/PageContent.astro";
 import TypeList from "../../../components/TypeList.astro";
 import TypeListItem from "../../../components/TypeListItem.astro";
 import BlockLink from "../../../components/BlockLink.astro";
+import AttackTypesIntro from "../../../components/AttackTypesIntro.astro";
 ---
 
 <Layout title="Pokemon Go Companion">
   <PageContent>
     <div>
-      <h2>Attack Types</h2>
-
-      <p class="my-4">
-        Find out which pokemon types will take extra damage from your attacks.
-      </p>
+      <AttackTypesIntro />
 
       <div transition:name="typelist-attack" transition:animate="initial">
         <TypeList>
@@ -51,14 +48,6 @@ import BlockLink from "../../../components/BlockLink.astro";
 </Layout>
 
 <style>
-  h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-
   .text-gradient {
     background-image: var(--accent-gradient);
     -webkit-background-clip: text;

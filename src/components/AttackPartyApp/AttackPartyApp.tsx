@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Switch from "../Switch/Switch";
+import SwitchList from "../SwitchList/SwitchList";
 import { allTypes, type PokemonType } from "../../pokemon_types";
 import { getStrongMatchups } from "../../matchups";
 import { pokemonTypesConfig } from "../../pokemon_types_config";
@@ -26,21 +27,19 @@ const AttackPartyApp = () => {
     <div>
       <h1 className="my-8 text-5xl">Attack Party</h1>
 
-      <div className="attack-party-app-wrapper my-4">
-        <div className="attack-party-app-list">
-          {allTypes.map((type) => (
-            <div className="attack-party-app-list-item" key={type}>
-              <Switch
-                icon={pokemonTypesConfig[type].image}
-                color={pokemonTypesConfig[type].color}
-                value={types.includes(type)}
-                onChange={() => toggleType(type)}
-              />{" "}
-              {pokemonTypesConfig[type].label}
-            </div>
-          ))}
-        </div>
-      </div>
+      <SwitchList>
+        {allTypes.map((type) => (
+          <div className="attack-party-app-list-item" key={type}>
+            <Switch
+              icon={pokemonTypesConfig[type].image}
+              color={pokemonTypesConfig[type].color}
+              value={types.includes(type)}
+              onChange={() => toggleType(type)}
+            />{" "}
+            {pokemonTypesConfig[type].label}
+          </div>
+        ))}
+      </SwitchList>
 
       <hr />
 

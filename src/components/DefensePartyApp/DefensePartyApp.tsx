@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Switch from "../Switch/Switch";
+import SwitchList from "../SwitchList/SwitchList";
 import { allTypes, type PokemonType } from "../../pokemon_types";
 import {
   getStrongMatchupsToDefeat,
@@ -34,7 +35,7 @@ const DefensePartyApp = () => {
     <div>
       <h1 className="my-8 text-5xl">Dual Types app</h1>
 
-      <div className="defense-party-app-list">
+      <SwitchList>
         {allTypes.map((type) => (
           <div className="defense-party-app-list-item" key={type}>
             <Switch
@@ -46,7 +47,7 @@ const DefensePartyApp = () => {
             {pokemonTypesConfig[type].label}
           </div>
         ))}
-      </div>
+      </SwitchList>
 
       <hr />
 

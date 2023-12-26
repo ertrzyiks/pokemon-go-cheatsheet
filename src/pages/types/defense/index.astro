@@ -7,16 +7,13 @@ import PageContent from "../../../components/PageContent.astro";
 import TypeList from "../../../components/TypeList.astro";
 import TypeListItem from "../../../components/TypeListItem.astro";
 import BlockLink from "../../../components/BlockLink.astro";
+import DefenseTypesIntro from "../../../components/DefenseTypesIntro.astro";
 ---
 
 <Layout title="Pokemon Go Companion">
   <PageContent>
     <div>
-      <h2>How to defeat</h2>
-
-      <p class="my-4">
-        Find out what attacks one should use to defeat a certain pokemon type.
-      </p>
+      <DefenseTypesIntro />
 
       <div transition:name="typelist-defense" transition:animate="initial">
         <TypeList>
@@ -54,14 +51,6 @@ import BlockLink from "../../../components/BlockLink.astro";
 </Layout>
 
 <style>
-  h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-
   ul {
     padding: 0;
     margin: 0;
