@@ -5,12 +5,17 @@ import Switch from "../Switch/Switch";
 import SwitchList from "../SwitchList/SwitchList";
 import Rating from "../Rating/Rating";
 import { allTypes, type PokemonType } from "../../pokemon_types";
-import {
-  getStrongMatchupsToDefeat,
-  getWeakMatchupsToDefeat,
-} from "../../matchups";
+import { getMatchupsToDefeat } from "../../matchups";
+import { Matchup } from "../../matchups";
 import { pokemonTypesConfig } from "../../pokemon_types_config";
 import "./styles.css";
+
+type MatchupColor =
+  | "neutral"
+  | "effective"
+  | "effective-x2"
+  | "weak"
+  | "weak-x2";
 
 const MatchupMarker = ({
   children,
@@ -30,10 +35,12 @@ const MatchupMarker = ({
 
   return (
     <div
-      className={clsx("flex items-center px-4 py-2", {
+      className={clsx("flex items-center justify-between px-4 py-2 bg-glare", {
         "bg-slate-800": color === "neutral",
-        "bg-green-800": color === "effective" || color === "effective-x2",
-        "bg-red-800": color === "weak" || color === "weak-x2",
+        "bg-green-800": color === "effective",
+        "bg-green-600": color === "effective-x2",
+        "bg-amber-800": color === "weak",
+        "bg-red-800": color === "weak-x2",
       })}
     >
       {children}
@@ -43,18 +50,44 @@ const MatchupMarker = ({
   );
 };
 
+const matchupToColor: Record<Matchup, MatchupColor> = {
+  [Matchup.Regular]: "neutral",
+  [Matchup.Strong]: "effective",
+  [Matchup.VeryStrong]: "effective-x2",
+  [Matchup.Weak]: "weak",
+  [Matchup.VeryWeak]: "weak-x2",
+};
+
+const legendConfig = [
+  {
+    color: "weak-x2" as const,
+    text: "attack type is very not effective",
+  },
+  {
+    color: "weak" as const,
+    text: "attack type is not effective",
+  },
+  {
+    color: "neutral" as const,
+    text: "attack type is neutral",
+  },
+  {
+    color: "effective" as const,
+    text: "attack type is super-effective",
+  },
+  {
+    color: "effective-x2" as const,
+    text: "attack type is super super-effective",
+  },
+];
+
 const DefensePartyApp = () => {
   const [types, setTypes] = useState<PokemonType[]>([]);
 
-  const allStrongMatchups = getStrongMatchupsToDefeat(types);
-  const allWeakMatchups = getWeakMatchupsToDefeat(types);
+  const allMatchups = getMatchupsToDefeat(types);
 
-  const hasStrongMatchup = (type: PokemonType) => {
-    return allStrongMatchups.includes(type);
-  };
-
-  const hasWeakMatchup = (type: PokemonType) => {
-    return allWeakMatchups.includes(type);
+  const getMatchup = (type: PokemonType) => {
+    return allMatchups.find((matchup) => matchup.type === type)?.result;
   };
 
   const toggleType = (type: PokemonType) => {
@@ -91,13 +124,7 @@ const DefensePartyApp = () => {
         {allTypes.map((type) => (
           <MatchupMarker
             key={type}
-            color={
-              hasStrongMatchup(type)
-                ? "effective"
-                : hasWeakMatchup(type)
-                ? "weak"
-                : "neutral"
-            }
+            color={matchupToColor[getMatchup(type) ?? Matchup.Regular]}
           >
             {pokemonTypesConfig[type].label}
           </MatchupMarker>
@@ -106,32 +133,13 @@ const DefensePartyApp = () => {
 
       <div className="my-4">
         <p className="my-4">Legend</p>
-        <div className="flex items-center gap-2 my-2">
-          <MatchupMarker color="weak-x2">Type</MatchupMarker>{" "}
-          <span className="text-sm">
-            attack type is double not very effective
-          </span>
-        </div>
 
-        <div className="flex items-center gap-2 my-2">
-          <MatchupMarker color="weak">Type</MatchupMarker>{" "}
-          <span className="text-sm">attack type is not very effective</span>
-        </div>
-
-        <div className="flex items-center gap-2 my-2">
-          <MatchupMarker color="neutral">Type</MatchupMarker>{" "}
-          <span className="text-sm">attack type is neutral</span>
-        </div>
-
-        <div className="flex items-center gap-2 my-2">
-          <MatchupMarker color="effective">Type</MatchupMarker>{" "}
-          <span className="text-sm">attack type is super-effective</span>
-        </div>
-
-        <div className="flex items-center gap-2 my-2">
-          <MatchupMarker color="effective-x2">Type</MatchupMarker>{" "}
-          <span className="text-sm">attack type is double super-effective</span>
-        </div>
+        {legendConfig.map(({ color, text }) => (
+          <div key={color} className="flex items-center gap-2 my-2">
+            <MatchupMarker color={color}>Type</MatchupMarker>{" "}
+            <span className="text-sm">{text}</span>
+          </div>
+        ))}
       </div>
     </div>
   );

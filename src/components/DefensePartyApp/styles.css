@@ -11,7 +11,7 @@
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 
-.defense-matchup-grid > div {
+.bg-glare {
   background-image: linear-gradient(
     90deg,
     rgba(234, 234, 234, 0.1) 0%,

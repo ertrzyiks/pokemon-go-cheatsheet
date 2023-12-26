@@ -1,9 +1,11 @@
 import type { PokemonType } from "./pokemon_types";
 
-enum Matchup {
+export enum Matchup {
+  VeryStrong,
   Strong,
   Regular,
   Weak,
+  VeryWeak,
 }
 
 const getDefaultMatchup = () => ({
@@ -208,47 +210,63 @@ export function getWeakMatchups(type: PokemonType) {
     .map(([type]) => type as PokemonType);
 }
 
-export function getStrongMatchupsToDefeat(types: PokemonType[]) {
-  return Object.entries(matchups)
-    .filter(([_, matchup]) => {
-      const intermediateMatchups = types.map((type) => matchup[type]);
+function scoreToMatchup(score: number): Matchup {
+  if (score < -1) {
+    return Matchup.VeryWeak;
+  }
+  if (score === -1) {
+    return Matchup.Weak;
+  }
 
-      let score = 0;
+  if (score === 1) {
+    return Matchup.Strong;
+  }
 
-      intermediateMatchups.forEach((matchup) => {
-        if (matchup === Matchup.Strong) {
-          score += 1;
-        } else if (matchup === Matchup.Weak) {
-          score -= 1;
-        }
-      });
+  if (score > 1) {
+    return Matchup.VeryStrong;
+  }
 
-      const finalMatchup = score > 0 ? Matchup.Strong : Matchup.Weak;
+  return Matchup.Regular;
+}
 
-      return finalMatchup === Matchup.Strong;
+export function getMatchupsToDefeat(types: PokemonType[]) {
+  return Object.entries(matchups).map(([attackingType, matchup]) => {
+    const intermediateMatchups = types.map((type) => matchup[type]);
+
+    let score = 0;
+
+    intermediateMatchups.forEach((matchup) => {
+      if (matchup === Matchup.Strong) {
+        score += 1;
+      } else if (matchup === Matchup.Weak) {
+        score -= 1;
+      }
+    });
+
+    return {
+      result: scoreToMatchup(score),
+      type: attackingType as PokemonType,
+    };
+  });
+}
+
+export function getStrongMatchupsToDefeat(types: PokemonType[]): PokemonType[] {
+  return getMatchupsToDefeat(types)
+    .filter((matchup) => {
+      return (
+        matchup.result === Matchup.Strong ||
+        matchup.result === Matchup.VeryStrong
+      );
     })
-    .map(([attackerType]) => attackerType as PokemonType);
+    .map((matchup) => matchup.type);
 }
 
 export function getWeakMatchupsToDefeat(types: PokemonType[]) {
-  return Object.entries(matchups)
-    .filter(([_, matchup]) => {
-      const intermediateMatchups = types.map((type) => matchup[type]);
-
-      let score = 0;
-
-      intermediateMatchups.forEach((matchup) => {
-        if (matchup === Matchup.Strong) {
-          score += 1;
-        } else if (matchup === Matchup.Weak) {
-          score -= 1;
-        }
-      });
-
-      const finalMatchup =
-        score > 0 ? Matchup.Strong : score < 0 ? Matchup.Weak : Matchup.Regular;
-
-      return finalMatchup === Matchup.Weak;
+  return getMatchupsToDefeat(types)
+    .filter((matchup) => {
+      return (
+        matchup.result === Matchup.Weak || matchup.result === Matchup.VeryWeak
+      );
     })
-    .map(([attackerType]) => attackerType as PokemonType);
+    .map((matchup) => matchup.type);
 }
