@@ -5,6 +5,7 @@ import { allTypes, type PokemonType } from "../../pokemon_types";
 import { getStrongMatchups } from "../../matchups";
 import { pokemonTypesConfig } from "../../pokemon_types_config";
 import "./styles.css";
+import clsx from "clsx";
 
 const AttackPartyApp = () => {
   const [types, setTypes] = useState<PokemonType[]>([]);
@@ -27,6 +28,8 @@ const AttackPartyApp = () => {
     <div>
       <h1 className="my-8 text-5xl">Attack Party</h1>
 
+      <p className="my-4">Available attack types</p>
+
       <SwitchList>
         {allTypes.map((type) => (
           <div className="attack-party-app-list-item" key={type}>
@@ -41,15 +44,16 @@ const AttackPartyApp = () => {
         ))}
       </SwitchList>
 
+      <p className="my-4">Coverage</p>
+
       <div className="attack-matchup-grid my-8 mx-auto">
         {allTypes.map((type) => (
           <div
             key={type}
-            className="bg-slate-800"
-            style={{
-              padding: "16px",
-              // backgroundColor: hasStrongMatchup(type) ? "green" : "transparent",
-            }}
+            className={clsx("px-4 py-2", {
+              "bg-slate-800": !hasStrongMatchup(type),
+              "bg-green-800": hasStrongMatchup(type),
+            })}
           >
             {pokemonTypesConfig[type].label}
           </div>
