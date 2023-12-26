@@ -41,16 +41,14 @@ const AttackPartyApp = () => {
         ))}
       </SwitchList>
 
-      <hr />
-
-      <div className="attack-matchup-grid">
+      <div className="attack-matchup-grid my-8 mx-auto">
         {allTypes.map((type) => (
           <div
             key={type}
+            className="bg-slate-800"
             style={{
-              border: "1px solid #eee",
               padding: "16px",
-              backgroundColor: hasStrongMatchup(type) ? "green" : "transparent",
+              // backgroundColor: hasStrongMatchup(type) ? "green" : "transparent",
             }}
           >
             {pokemonTypesConfig[type].label}

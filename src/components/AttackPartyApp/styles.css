@@ -8,7 +8,5 @@
 .attack-matchup-grid {
   display: grid;
   gap: 8px;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  max-width: 1000px;
-  margin: 16px auto;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
