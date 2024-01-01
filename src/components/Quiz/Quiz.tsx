@@ -53,14 +53,32 @@ const Quiz = () => {
   };
 
   return (
-    <div className="flex flex-col align-center justify-center h-[100dvh] max-w-xl mx-auto">
+    <div className="flex flex-col align-center justify-center h-[calc(100dvh-50px)] max-w-xl mx-auto">
       <h1 className="text-3xl my-4 text-center">Quiz</h1>
 
       {state.phase === "start" ? (
-        <div className="flex items-center justify-center">
-          <Pill as="button" onClick={() => handleStart()}>
-            Start
-          </Pill>
+        <div className="flex flex-col">
+          <p className="leading-6 my-6">
+            Learn to quickly recognize the best match to defeat a pokemon in a
+            Go Battle, Gym Battle, or a Raid. By answering the questions of the
+            quiz you will be faced the same challenges you will face in the
+            pokemon battles.
+          </p>
+
+          <p className="leading-6 my-6">
+            Answer 10 questions about the pokemon attack type effectiveness and
+            find out how well you know the game rules!
+          </p>
+
+          <div className="flex items-center justify-center">
+            <Pill
+              as="button"
+              className="bg-blue-500"
+              onClick={() => handleStart()}
+            >
+              Start
+            </Pill>
+          </div>
         </div>
       ) : state.phase === "question" ? (
         <div className="w-full">

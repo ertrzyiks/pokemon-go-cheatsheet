@@ -65,7 +65,7 @@ const QuizQuestion = ({
           invisible: state === "pending",
         })}
       >
-        <Pill as="button" onClick={() => onContinue()}>
+        <Pill as="button" className="bg-blue-500" onClick={() => onContinue()}>
           Continue
         </Pill>
       </div>

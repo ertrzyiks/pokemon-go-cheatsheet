@@ -88,20 +88,41 @@ const getShortText = (text: string) => {
           gruntCatchphrasesInOrder.map((challenge) => (
             <div class="grunt-wrap">
             <li class="grunt">
-                <a href={`/pokemon-go-companion/grunt/${challenge.type}`}>
+              <a href={`/pokemon-go-companion/grunt/${challenge.type}`} class="grunt-link">
                 <Pill
-                 color="#5F6DBC"
-                 interactive
+                color="#5F6DBC"
+                interactive
                 >
 
                   {getShortText(challenge.text)}
-                </Pill></a>
+                </Pill>
+              </a>
             </li>
             </div>
           ))
         }
       </ul>
     </div>
+
+    <div class="grunt-wrapper">
+      <h2>Quiz</h2>
+
+      <p class="leading-6 my-6">
+        Answer 10 questions about the pokemon attack type effectiveness and
+        find out how well you know the game rules!
+      </p>
+
+      <a href='/pokemon-go-companion/quiz' class="w-8 block">
+        <Pill
+        color="#5F6DBC"
+        interactive
+        >
+          Start quiz
+        </Pill>
+      </a>
+    </div>
+
+
   </PageContent>
 </Layout>
 
@@ -152,7 +173,7 @@ const getShortText = (text: string) => {
     background-size: 400%;
     background-position: 0%;
   }
-  a {
+  a.grunt-link {
     display: flex;
     gap: 1em;
     align-items: center;
@@ -160,7 +181,7 @@ const getShortText = (text: string) => {
     width: 100%;
   }
 
-  a span {
+  a.grunt-link span {
     text-transform: uppercase;
   }
 
