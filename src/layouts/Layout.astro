@@ -33,13 +33,14 @@ const { title, showLogo } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
+    {import.meta.env.MODE === "production" && (
+      <Analytics />
+    )}
   </head>
   <body class="text-slate-200">
     <Header showLogo={showLogo} />
 
-    {import.meta.env.MODE === "production" && (
-      <Analytics />
-    )}
+
 
     <slot />
 
