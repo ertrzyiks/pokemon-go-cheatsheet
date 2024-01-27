@@ -1,11 +1,11 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ertrzyiks.github.io',
-  base: '/pokemon-go-companion',
-  integrations: [react(), tailwind()]
+  site: "https://ertrzyiks.github.io",
+  base: "/pokemon-go-cheatsheet",
+  integrations: [react(), tailwind()],
 });
