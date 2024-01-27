@@ -10,7 +10,7 @@ const { showLogo = true } = Astro.props;
   {
     showLogo && (
       <a
-        href="/pokemon-go-companion"
+        href="/pokemon-go-cheatsheet"
         transition:name="logo"
         transition:animate="initial"
         class="logo text-gradient"
@@ -20,10 +20,12 @@ const { showLogo = true } = Astro.props;
     )
   }
   <nav>
-    <a href="/pokemon-go-companion/types/attack">Attack</a>
-    <a href="/pokemon-go-companion/types/defense">Defense</a>
-    <a href="/pokemon-go-companion/grunt">Grunts</a>
-    <a href="/pokemon-go-companion/quiz">Quiz</a>
+    <a href="/pokemon-go-cheatsheet/types/attack">Attack type</a>
+    <a href="/pokemon-go-cheatsheet/types/defense">Pokemon type</a>
+    <a href="/pokemon-go-cheatsheet/types/defense/party">Dual type</a>
+    <a href="/pokemon-go-cheatsheet/types/attack/party">Attacks coverage</a>
+    <a href="/pokemon-go-cheatsheet/grunt">Grunts</a>
+    <a href="/pokemon-go-cheatsheet/quiz">Quiz</a>
   </nav>
 </header>
 
@@ -43,6 +45,7 @@ const { showLogo = true } = Astro.props;
 
   nav {
     display: flex;
+    flex-wrap: wrap;
     gap: 1em;
     justify-content: center;
     width: 100%;

@@ -3,12 +3,12 @@
   "short_name": "Pokemon Go Companion",
   "icons": [
     {
-      "src": "/pokemon-go-companion/android-chrome-192x192.png",
+      "src": "/pokemon-go-cheatsheet/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/pokemon-go-companion/android-chrome-512x512.png",
+      "src": "/pokemon-go-cheatsheet/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

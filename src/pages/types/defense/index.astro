@@ -20,7 +20,7 @@ import DefenseTypesIntro from "../../../components/DefenseTypesIntro.astro";
           {
             allTypes.map((type) => (
               <TypeListItem>
-                <BlockLink href={`/pokemon-go-companion/types/defense/${type}`}>
+                <BlockLink href={`/pokemon-go-cheatsheet/types/defense/${type}`}>
                   <PokemonPill interactive type={type} />
                 </BlockLink>
               </TypeListItem>
@@ -31,14 +31,14 @@ import DefenseTypesIntro from "../../../components/DefenseTypesIntro.astro";
     </div>
 
     <div class="my-8">
-      <h2>Dual Types</h2>
+      <h2>Dual Type</h2>
 
       <p class="mb-4">
         Some pokemons belong to not one but two types.
-        Check how it affects the streght and weakness of them with the Dual Types app.
+        Check how it affects the streght and weakness of them with the Dual type app.
       </p>
 
-      <a href="/pokemon-go-companion/types/defense/party" class="block w-4">
+      <a href="/pokemon-go-cheatsheet/types/defense/party" class="block w-4">
         <Pill
           color={'#3b82f6'}
           interactive

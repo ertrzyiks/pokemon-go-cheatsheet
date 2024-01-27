@@ -45,9 +45,9 @@ const AttackPartyApp = () => {
 
   return (
     <div>
-      <h1 className="my-8 text-5xl">Attack Party</h1>
+      <h1 className="my-8 text-5xl">Attacks Coverage</h1>
 
-      <p className="my-4">Available attack types</p>
+      <p className="my-4">Available attack types for your pokemon or a party</p>
 
       <SwitchList>
         {allTypes.map((type) => (
@@ -63,7 +63,7 @@ const AttackPartyApp = () => {
         ))}
       </SwitchList>
 
-      <p className="my-4">Coverage</p>
+      <p className="my-4">Coverage summary of the selected attack types</p>
 
       <div className="attack-matchup-grid my-8 mx-auto">
         {allTypes.map((type) => (

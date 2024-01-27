@@ -20,7 +20,7 @@ import AttackTypesIntro from "../../../components/AttackTypesIntro.astro";
           {
             allTypes.map((type) => (
               <TypeListItem>
-                <BlockLink href={`/pokemon-go-companion/types/attack/${type}`}>
+                <BlockLink href={`/pokemon-go-cheatsheet/types/attack/${type}`}>
                   <PokemonPill interactive type={type} />
                 </BlockLink>
               </TypeListItem>
@@ -31,11 +31,11 @@ import AttackTypesIntro from "../../../components/AttackTypesIntro.astro";
     </div>
 
     <div class="my-8">
-      <h2>Attack Party</h2>
+      <h2>Attacks Coverage</h2>
 
-      <p class="mb-4">Learn what coverage your party has with the Attack Party app.</p>
+      <p class="mb-4">Learn what coverage your party has with the Attacks coverage app.</p>
 
-      <a href="/pokemon-go-companion/types/attack/party" class="block w-4">
+      <a href="/pokemon-go-cheatsheet/types/attack/party" class="block w-4">
         <Pill
           color={'#3b82f6'}
           interactive

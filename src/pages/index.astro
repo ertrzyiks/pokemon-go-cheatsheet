@@ -50,7 +50,7 @@ const getShortText = (text: string) => {
           {
             allTypes.map((type) => (
               <TypeListItem>
-                <BlockLink href={`/pokemon-go-companion/types/attack/${type}`}>
+                <BlockLink href={`/pokemon-go-cheatsheet/types/attack/${type}`}>
                   <PokemonPill interactive type={type} />
                 </BlockLink>
               </TypeListItem>
@@ -68,7 +68,7 @@ const getShortText = (text: string) => {
           {
             allTypes.map((type) => (
               <TypeListItem>
-                <BlockLink href={`/pokemon-go-companion/types/defense/${type}`}>
+                <BlockLink href={`/pokemon-go-cheatsheet/types/defense/${type}`}>
                   <PokemonPill interactive type={type} />
                 </BlockLink>
               </TypeListItem>
@@ -88,10 +88,11 @@ const getShortText = (text: string) => {
           gruntCatchphrasesInOrder.map((challenge) => (
             <div class="grunt-wrap">
             <li class="grunt">
-              <a href={`/pokemon-go-companion/grunt/${challenge.type}`} class="grunt-link">
+              <a href={`/pokemon-go-cheatsheet/grunt/${challenge.type}`} class="grunt-link">
                 <Pill
-                color="#5F6DBC"
-                interactive
+                  color="#5F6DBC"
+                  className="h-full"
+                  interactive
                 >
 
                   {getShortText(challenge.text)}
@@ -112,12 +113,12 @@ const getShortText = (text: string) => {
         find out how well you know the game rules!
       </p>
 
-      <a href='/pokemon-go-companion/quiz' class="w-8 block">
+      <a href='/pokemon-go-cheatsheet/quiz' class="w-8 block">
         <Pill
-        color="#5F6DBC"
-        interactive
+          color="#5F6DBC"
+          interactive
         >
-          Start quiz
+          Start Quiz
         </Pill>
       </a>
     </div>

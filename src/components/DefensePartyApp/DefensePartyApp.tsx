@@ -1,8 +1,10 @@
 import { useState } from "react";
+
 import { clsx } from "clsx";
 
 import Switch from "../Switch/Switch";
 import SwitchList from "../SwitchList/SwitchList";
+import PokemonTypeList from "../PokemonTypeList/PokemonTypeList";
 import Rating from "../Rating/Rating";
 import { allTypes, type PokemonType } from "../../pokemon_types";
 import { getMatchupsToDefeat } from "../../matchups";
@@ -100,7 +102,7 @@ const DefensePartyApp = () => {
 
   return (
     <div>
-      <h1 className="my-8 text-5xl">Dual Types app</h1>
+      <h1 className="my-8 text-5xl">Dual Type Pokemon</h1>
 
       <p className="my-4">Types of the pokemon</p>
 
@@ -118,7 +120,16 @@ const DefensePartyApp = () => {
         ))}
       </SwitchList>
 
-      <p className="my-4">Effectiveness of attack types</p>
+      <p className="my-4">
+        Effectiveness of attack types{" "}
+        {types.length > 0 ? (
+          <>
+            against a <PokemonTypeList types={types} /> pokemon
+          </>
+        ) : (
+          ""
+        )}{" "}
+      </p>
 
       <div className="defense-matchup-grid my-4 mx-auto">
         {allTypes.map((type) => (

@@ -13,6 +13,7 @@ import TypeList from "../../../components/TypeList.astro";
 import TypeListItem from "../../../components/TypeListItem.astro";
 import BlockLink from "../../../components/BlockLink.astro";
 import DefenseTypesIntro from "../../../components/DefenseTypesIntro.astro";
+import PokemonTypeList from "../../../components/PokemonTypeList/PokemonTypeList";
 
 export function getStaticPaths() {
   return allTypes.map((type) => ({ params: { type } }));
@@ -34,8 +35,8 @@ const weakMatchups = getWeakMatchupsToDefeat([type]);
       <PokemonPill type={type} />
     </div>
 
-    <div>
-      Strong
+    <div class="mt-8">
+      Attack types strong against <PokemonTypeList types={[type]}/> type Pokemon
       <ul>
         {
           strongMatchups.map((t) => (
@@ -50,7 +51,7 @@ const weakMatchups = getWeakMatchupsToDefeat([type]);
     </div>
 
     <div>
-      Weak
+      Attack types weak against <PokemonTypeList types={[type]}/> type Pokemon
       <ul>
         {
           weakMatchups.map((t) => (
@@ -71,7 +72,7 @@ const weakMatchups = getWeakMatchupsToDefeat([type]);
         {
           allTypes.map((type) => (
             <TypeListItem>
-              <BlockLink href={`/pokemon-go-companion/types/defense/${type}`}>
+              <BlockLink href={`/pokemon-go-cheatsheet/types/defense/${type}`}>
                 <PokemonPill interactive type={type} />
               </BlockLink>
             </TypeListItem>
