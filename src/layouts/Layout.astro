@@ -3,6 +3,8 @@ import { ViewTransitions } from "astro:transitions";
 import "../reset.css";
 import Header from "../components/Header.astro";
 import Analytics from "../components/Analytics.astro";
+import FeedbackForm from "../components/FeedbackForm.astro";
+import PageContent from "../components/PageContent.astro";
 
 interface Props {
   title: string;
@@ -40,9 +42,11 @@ const { title, showLogo } = Astro.props;
   <body class="text-slate-200">
     <Header showLogo={showLogo} />
 
-
-
     <slot />
+
+    <PageContent>
+      <FeedbackForm />
+    </PageContent>
 
     <style is:global>
       :root {
