@@ -32,6 +32,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.POKEMON_GO_CHANGESETS_TOKEN }}
 
   deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     name: Update Website
     uses: ./.github/workflows/deploy.yml
     needs: create-release
