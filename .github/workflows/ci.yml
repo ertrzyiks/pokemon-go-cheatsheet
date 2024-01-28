@@ -5,7 +5,6 @@ on:
   # Using a different branch name? Replace `main` with your branch’s name
   pull_request:
 
-
 # Allow this job to clone the repo and create a page deployment
 permissions:
   contents: read
@@ -20,18 +19,11 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-          cache: 'npm'
-          
+          node-version: "20"
+          cache: "npm"
+
       - name: Install dependencies
         run: npm install
 
       - name: Build
         run: npm run build
-
-
-
-
