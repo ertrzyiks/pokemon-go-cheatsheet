@@ -5,7 +5,6 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://ertrzyiks.github.io",
-  base: "/pokemon-go-cheatsheet",
+  site: "https://pokemon-go-cheatsheet.ertrzyiks.me",
   integrations: [react(), tailwind()],
 });

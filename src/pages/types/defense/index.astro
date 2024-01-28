@@ -20,7 +20,7 @@ import DefenseTypesIntro from "../../../components/DefenseTypesIntro.astro";
           {
             allTypes.map((type) => (
               <TypeListItem>
-                <BlockLink href={`/pokemon-go-cheatsheet/types/defense/${type}`}>
+                <BlockLink href={`/types/defense/${type}`}>
                   <PokemonPill interactive type={type} />
                 </BlockLink>
               </TypeListItem>
@@ -38,7 +38,7 @@ import DefenseTypesIntro from "../../../components/DefenseTypesIntro.astro";
         Check how it affects the streght and weakness of them with the Dual type app.
       </p>
 
-      <a href="/pokemon-go-cheatsheet/types/defense/party" class="block w-4">
+      <a href="/types/defense/party" class="block w-4">
         <Pill
           color={'#3b82f6'}
           interactive
