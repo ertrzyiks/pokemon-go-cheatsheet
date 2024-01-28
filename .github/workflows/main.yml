@@ -39,6 +39,6 @@ jobs:
     name: Update Website
     uses: ./.github/workflows/deploy.yml
     needs: create-release
-    if: needs.create-release.outputs.hasChangesets == 'true'
+    if: needs.create-release.outputs.hasChangesets == 'false'
     with:
       ref: ${{ github.ref }}
