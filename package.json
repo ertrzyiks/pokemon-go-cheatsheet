@@ -8,7 +8,9 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "pokedex:download": "node scripts/download-pokedex-json.js",
+    "pokedex:generate": "node scripts/get-dual-type-pokemons.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.2.1",

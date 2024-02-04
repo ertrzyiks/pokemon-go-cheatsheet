@@ -10,6 +10,7 @@ import { allTypes, type PokemonType } from "../../pokemon_types";
 import { getMatchupsToDefeat } from "../../matchups";
 import { Matchup } from "../../matchups";
 import { pokemonTypesConfig } from "../../pokemon_types_config";
+import dualTypeData from "../../dual_type_pokemons.json";
 import "./styles.css";
 
 type MatchupColor =
@@ -83,8 +84,20 @@ const legendConfig = [
   },
 ];
 
+const getExamplesForTypes = (types: PokemonType[]) => {
+  if (types.length < 2) {
+    return [];
+  }
+
+  const typesKey = types.slice().sort().join("+");
+
+  return dualTypeData[typesKey as keyof typeof dualTypeData] || [];
+};
+
 const DefensePartyApp = () => {
   const [types, setTypes] = useState<PokemonType[]>([]);
+
+  const examples = getExamplesForTypes(types);
 
   const allMatchups = getMatchupsToDefeat(types);
 
@@ -142,15 +155,41 @@ const DefensePartyApp = () => {
         ))}
       </div>
 
-      <div className="my-4">
-        <p className="my-4">Legend</p>
+      <div className="my-4 md:flex">
+        <div>
+          <p className="my-4 text-3xl">Legend</p>
 
-        {legendConfig.map(({ color, text }) => (
-          <div key={color} className="flex items-center gap-2 my-2">
-            <MatchupMarker color={color}>Type</MatchupMarker>{" "}
-            <span className="text-sm">{text}</span>
+          {legendConfig.map(({ color, text }) => (
+            <div key={color} className="flex items-center gap-2 my-2">
+              <MatchupMarker color={color}>Type</MatchupMarker>{" "}
+              <span className="text-sm">{text}</span>
+            </div>
+          ))}
+        </div>
+
+        {types.length > 1 && (
+          <div>
+            <h2 className="my-4 text-3xl">
+              <PokemonTypeList types={types} /> Pokemons
+            </h2>
+
+            {examples.length === 0 && (
+              <div className="my-4">
+                No dual type pokemon found for the selected types
+              </div>
+            )}
+
+            {examples.map((pokemon) => (
+              <div key={pokemon.dexNr}>
+                <a
+                  href={`https://gamepress.gg/pokemongo/pokemon/${pokemon.dexNr}`}
+                >
+                  {pokemon.name} ↗
+                </a>
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
