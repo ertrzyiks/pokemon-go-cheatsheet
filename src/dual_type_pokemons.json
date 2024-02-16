@@ -1,7 +1,7 @@
 {
   "grass+poison": [
     {
-      "name": "Bulbasaur ",
+      "name": "Bulbasaur",
       "dexNr": 1
     },
     {
@@ -779,6 +779,10 @@
     {
       "name": "Togekiss",
       "dexNr": 468
+    },
+    {
+      "name": "Enamorus",
+      "dexNr": 905
     }
   ],
   "flying+psychic": [
