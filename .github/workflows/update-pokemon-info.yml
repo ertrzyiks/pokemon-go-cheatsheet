@@ -35,10 +35,11 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         id: cpr
         with:
+          token: ${{ secrets.POKEMON_GO_CHANGESETS_TOKEN }}
           commit-message: Update pokemon information
           title: Update pokemon information
           body: Update pokemon information
-          branch: update-pokemon-information
+          branch: auto/update-pokemon-information
           base: main
 
       - name: Enable Pull Request Automerge
