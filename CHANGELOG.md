@@ -1,5 +1,11 @@
 # pokemon-go-companion
 
+## 1.1.1
+
+### Patch Changes
+
+- f1d4297: cover immunity types
+
 ## 1.1.0
 
 ### Minor Changes
