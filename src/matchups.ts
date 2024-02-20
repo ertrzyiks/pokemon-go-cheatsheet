@@ -51,7 +51,7 @@ const matchups: Record<PokemonType, Record<PokemonType, Matchup>> = {
 };
 
 matchups["normal"]["rock"] = Matchup.Weak;
-matchups["normal"]["ghost"] = Matchup.Weak;
+matchups["normal"]["ghost"] = Matchup.VeryWeak;
 matchups["normal"]["steel"] = Matchup.Weak;
 
 matchups["fighting"]["normal"] = Matchup.Strong;
@@ -64,7 +64,7 @@ matchups["fighting"]["poison"] = Matchup.Weak;
 matchups["fighting"]["bug"] = Matchup.Weak;
 matchups["fighting"]["psychic"] = Matchup.Weak;
 matchups["fighting"]["fairy"] = Matchup.Weak;
-matchups["fighting"]["ghost"] = Matchup.Weak;
+matchups["fighting"]["ghost"] = Matchup.VeryWeak;
 
 matchups["flying"]["fighting"] = Matchup.Strong;
 matchups["flying"]["bug"] = Matchup.Strong;
@@ -78,7 +78,7 @@ matchups["poison"]["fairy"] = Matchup.Strong;
 matchups["poison"]["ground"] = Matchup.Weak;
 matchups["poison"]["rock"] = Matchup.Weak;
 matchups["poison"]["ghost"] = Matchup.Weak;
-matchups["poison"]["steel"] = Matchup.Weak;
+matchups["poison"]["steel"] = Matchup.VeryWeak;
 matchups["poison"]["poison"] = Matchup.Weak;
 
 matchups["ground"]["poison"] = Matchup.Strong;
@@ -86,7 +86,7 @@ matchups["ground"]["rock"] = Matchup.Strong;
 matchups["ground"]["steel"] = Matchup.Strong;
 matchups["ground"]["fire"] = Matchup.Strong;
 matchups["ground"]["electric"] = Matchup.Strong;
-matchups["ground"]["flying"] = Matchup.Weak;
+matchups["ground"]["flying"] = Matchup.VeryWeak;
 matchups["ground"]["bug"] = Matchup.Weak;
 matchups["ground"]["grass"] = Matchup.Weak;
 
@@ -111,7 +111,7 @@ matchups["bug"]["fairy"] = Matchup.Weak;
 
 matchups["ghost"]["ghost"] = Matchup.Strong;
 matchups["ghost"]["psychic"] = Matchup.Strong;
-matchups["ghost"]["normal"] = Matchup.Weak;
+matchups["ghost"]["normal"] = Matchup.VeryWeak;
 matchups["ghost"]["dark"] = Matchup.Weak;
 
 matchups["steel"]["ice"] = Matchup.Strong;
@@ -154,13 +154,13 @@ matchups["electric"]["flying"] = Matchup.Strong;
 matchups["electric"]["electric"] = Matchup.Weak;
 matchups["electric"]["grass"] = Matchup.Weak;
 matchups["electric"]["dragon"] = Matchup.Weak;
-matchups["electric"]["ground"] = Matchup.Weak;
+matchups["electric"]["ground"] = Matchup.VeryWeak;
 
 matchups["psychic"]["fighting"] = Matchup.Strong;
 matchups["psychic"]["poison"] = Matchup.Strong;
 matchups["psychic"]["psychic"] = Matchup.Weak;
 matchups["psychic"]["steel"] = Matchup.Weak;
-matchups["psychic"]["dark"] = Matchup.Weak;
+matchups["psychic"]["dark"] = Matchup.VeryWeak;
 
 matchups["ice"]["flying"] = Matchup.Strong;
 matchups["ice"]["ground"] = Matchup.Strong;
@@ -173,7 +173,7 @@ matchups["ice"]["ice"] = Matchup.Weak;
 
 matchups["dragon"]["dragon"] = Matchup.Strong;
 matchups["dragon"]["steel"] = Matchup.Weak;
-matchups["dragon"]["fairy"] = Matchup.Weak;
+matchups["dragon"]["fairy"] = Matchup.VeryWeak;
 
 matchups["fairy"]["fighting"] = Matchup.Strong;
 matchups["fairy"]["dragon"] = Matchup.Strong;
@@ -200,13 +200,18 @@ export function getMatchup({
 
 export function getStrongMatchups(type: PokemonType) {
   return Object.entries(matchups[type])
-    .filter(([, matchup]) => matchup === Matchup.Strong)
+    .filter(
+      ([, matchup]) =>
+        matchup === Matchup.Strong || matchup === Matchup.VeryStrong
+    )
     .map(([type]) => type as PokemonType);
 }
 
 export function getWeakMatchups(type: PokemonType) {
   return Object.entries(matchups[type])
-    .filter(([, matchup]) => matchup === Matchup.Weak)
+    .filter(
+      ([, matchup]) => matchup === Matchup.Weak || matchup === Matchup.VeryWeak
+    )
     .map(([type]) => type as PokemonType);
 }
 
@@ -236,10 +241,14 @@ export function getMatchupsToDefeat(types: PokemonType[]) {
     let score = 0;
 
     intermediateMatchups.forEach((matchup) => {
-      if (matchup === Matchup.Strong) {
+      if (matchup === Matchup.VeryStrong) {
+        score += 2;
+      } else if (matchup === Matchup.Strong) {
         score += 1;
       } else if (matchup === Matchup.Weak) {
         score -= 1;
+      } else if (matchup === Matchup.VeryWeak) {
+        score -= 2;
       }
     });
 
