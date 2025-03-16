@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pokemon-go-cheatsheet.ertrzyiks.me/sitemap-index.xml
