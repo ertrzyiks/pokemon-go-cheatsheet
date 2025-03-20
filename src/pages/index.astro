@@ -49,7 +49,7 @@ const getShortText = (text: string) => {
           {
             allTypes.map((type) => (
               <TypeListItem>
-                <BlockLink href={`/types/attack/${type}`}>
+                <BlockLink href={`/types/attack/${type}/`}>
                   <PokemonPill interactive type={type} />
                 </BlockLink>
               </TypeListItem>
@@ -67,7 +67,7 @@ const getShortText = (text: string) => {
           {
             allTypes.map((type) => (
               <TypeListItem>
-                <BlockLink href={`/types/defense/${type}`}>
+                <BlockLink href={`/types/defense/${type}/`}>
                   <PokemonPill interactive type={type} />
                 </BlockLink>
               </TypeListItem>
