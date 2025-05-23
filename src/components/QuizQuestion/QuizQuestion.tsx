@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { clsx } from "clsx";
 
 import Pill from "../Pill/Pill";
@@ -18,25 +18,30 @@ const QuizQuestion = ({
   onAnswer,
   onContinue,
 }: Props) => {
+  const ref = useRef<HTMLButtonElement>(null);
   const [selected, setSelected] = useState<string | null>(null);
 
   const state =
     selected === null
       ? "pending"
       : selected === answer
-      ? "correct"
-      : "incorrect";
+        ? "correct"
+        : "incorrect";
 
   const handleAnswer = (value: string) => {
     const score = value === answer ? 1 : 0;
 
     onAnswer(score);
     setSelected(value);
+
+    setTimeout(() => {
+      ref.current?.focus();
+    }, 0);
   };
 
   return (
     <div className="w-full">
-      <div className="text-center">{question}</div>
+      <div className="text-xl text-center my-8">{question}</div>
 
       <div className="grid grid-cols-2 gap-4 my-4">
         {options.map((option, index) => (
@@ -61,11 +66,16 @@ const QuizQuestion = ({
       </div>
 
       <div
-        className={clsx({
+        className={clsx("flex justify-center my-8", {
           invisible: state === "pending",
         })}
       >
-        <Pill as="button" className="bg-blue-500" onClick={() => onContinue()}>
+        <Pill
+          as="button"
+          ref={ref}
+          className="bg-blue-500"
+          onClick={() => onContinue()}
+        >
           Continue
         </Pill>
       </div>

@@ -1,16 +1,12 @@
 import { allTypes } from "./pokemon_types";
-import { getStrongMatchupsToDefeat } from "./matchups";
+import { getStrongMatchupsToDefeat, getWeakMatchups } from "./matchups";
 
 const randomize = <T>(array: T[]) => {
   return [...array].sort(() => Math.random() - 0.5);
 };
 
-export const getQuestions = () => {
-  const numberOfQuestions = 10;
-  const baseTypes = allTypes
-    .slice()
-    .sort(() => Math.random() - 0.5)
-    .slice(0, numberOfQuestions);
+export const getStrongMatchupQuestions = (numberOfQuestions: number) => {
+  const baseTypes = randomize(allTypes).slice(0, numberOfQuestions);
 
   return baseTypes.map((baseType) => {
     const counters = getStrongMatchupsToDefeat([baseType]);
@@ -24,4 +20,28 @@ export const getQuestions = () => {
       answer,
     };
   });
+};
+
+export const getStrongDefenseQuestions = (numberOfQuestions: number) => {
+  const baseTypes = randomize(allTypes).slice(0, numberOfQuestions);
+
+  return baseTypes.map((baseType) => {
+    const counters = getWeakMatchups(baseType);
+    const answer = randomize(counters)[0];
+    const wrongOptions = allTypes.filter((type) => !counters.includes(type));
+    const randomOptions = randomize(wrongOptions).slice(0, 3);
+
+    return {
+      question: `What type of pokemon is resistant to the ${baseType} type attack?`,
+      options: randomize([...randomOptions, answer]),
+      answer,
+    };
+  });
+};
+
+export const getQuestions = () => {
+  const questions = getStrongDefenseQuestions(5);
+  const questions2 = getStrongMatchupQuestions(5);
+
+  return randomize([...questions, ...questions2]);
 };
