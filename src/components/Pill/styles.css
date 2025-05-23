@@ -20,7 +20,8 @@
   cursor: pointer;
 }
 
-.pill.is-interactive:hover {
+.pill.is-interactive:hover,
+.pill.is-interactive:focus {
   outline: 1px solid #fff;
 }
 
